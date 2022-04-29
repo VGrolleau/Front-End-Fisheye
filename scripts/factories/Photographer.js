@@ -11,6 +11,7 @@ function photographerFactory(data) {
         divImgH2.classList.add('img_h2_div');
         divImgH2.setAttribute("role", "link");
         divImgH2.setAttribute("href", location + id);
+        divImgH2.setAttribute("aria-label", `Redirect to ${name} profile`);
 
         const img = document.createElement('img');
         img.setAttribute("src", picture);
