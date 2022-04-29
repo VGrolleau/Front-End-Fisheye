@@ -7,11 +7,21 @@ function photographerFactory(data) {
         const article = document.createElement('article');
         article.id = id;
 
+        const divImgH2 = document.createElement('div');
+        divImgH2.classList.add('img_h2_div');
+        divImgH2.setAttribute("role", "link");
+        divImgH2.setAttribute("href", location + id);
+        divImgH2.setAttribute("aria-label", `${name} profile`);
+
         const img = document.createElement('img');
-        img.setAttribute("src", picture)
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", name);
 
         const h2 = document.createElement('h2');
         h2.textContent = name;
+
+        divImgH2.appendChild(img);
+        divImgH2.appendChild(h2);
 
         const pLocation = document.createElement('p');
         pLocation.textContent = `${city}, ${country}`;
@@ -25,8 +35,7 @@ function photographerFactory(data) {
         pPrice.textContent = `${price}€/jour`;
         pPrice.classList.add('price_p');
 
-        article.appendChild(img);
-        article.appendChild(h2);
+        article.appendChild(divImgH2);
         article.appendChild(pLocation);
         article.appendChild(pTagline);
         article.appendChild(pPrice);
