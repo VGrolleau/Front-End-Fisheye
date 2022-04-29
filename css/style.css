@@ -37,12 +37,36 @@ h1 {
     flex-direction: column;
 }
 
-.photographer_section article h2 {
-    color: #D3573C;
-    font-size: 36px;
+.img_h2_div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.photographer_section article img {
+.img_h2_div img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.img_h2_div h2 {
+    color: #D3573C;
+    font-size: 36px;
+    margin-bottom: 0;
+}
+
+.location_p {
+    font-size: 1.3em;
+    margin-bottom: 8px;
+    color: #901C1C;
+}
+
+.tagline_p {
+    margin: 0;
+}
+
+.price_p {
+    margin-top: 8px;
+    color: #525252;
 }
