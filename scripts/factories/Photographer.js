@@ -10,10 +10,8 @@ function photographerFactory(data) {
         const divImgH2 = document.createElement('div');
         divImgH2.classList.add('img_h2_div');
         divImgH2.setAttribute("role", "link");
-        // divImgH2.setAttribute("href", 'photographer/' + id);
         divImgH2.setAttribute("aria-label", `${name} profile`);
         divImgH2.addEventListener("click", () => {
-            console.log(divImgH2);
             window.location = `photographer.html?${id}`;
         });
 
