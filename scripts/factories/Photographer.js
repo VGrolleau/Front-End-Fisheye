@@ -10,8 +10,10 @@ function photographerFactory(data) {
         const divImgH2 = document.createElement('div');
         divImgH2.classList.add('img_h2_div');
         divImgH2.setAttribute("role", "link");
-        divImgH2.setAttribute("href", location + id);
         divImgH2.setAttribute("aria-label", `${name} profile`);
+        divImgH2.addEventListener("click", () => {
+            window.location = `photographer.html?${id}`;
+        });
 
         const img = document.createElement('img');
         img.setAttribute("src", picture);
@@ -42,5 +44,6 @@ function photographerFactory(data) {
 
         return (article);
     }
+
     return { name, picture, getUserCardDOM }
 }
