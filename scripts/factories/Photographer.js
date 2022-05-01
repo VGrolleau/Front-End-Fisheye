@@ -12,7 +12,7 @@ function photographerFactory(data) {
         divImgH2.setAttribute("role", "link");
         divImgH2.setAttribute("aria-label", `${name} profile`);
         divImgH2.addEventListener("click", () => {
-            window.location = `photographer.html?${id}`;
+            window.location = `photographer.html?id=${id}`;
         });
 
         const img = document.createElement('img');
