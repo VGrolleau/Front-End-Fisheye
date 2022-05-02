@@ -45,10 +45,38 @@ function photographerFactory(data) {
         return (article);
     }
 
-    function getUserHeader() {
+    function getUserInfo() {
         const photographerInfo = document.querySelector(".photographer-info");
 
+        const h1 = document.createElement('h1');
+        h1.textContent = name;
+
+        const pLocation = document.createElement('p');
+        pLocation.textContent = `${city}, ${country}`;
+        pLocation.classList.add('location_p');
+
+        const pTagline = document.createElement('p');
+        pTagline.textContent = tagline;
+        pTagline.classList.add('tagline_p');
+
+        photographerInfo.appendChild(h1);
+        photographerInfo.appendChild(pLocation);
+        photographerInfo.appendChild(pTagline);
+
+        return (photographerInfo);
     }
 
-    return { name, picture, getUserCardDOM, getUserHeader };
+    function getUserImg() {
+        const photographerImg = document.querySelector(".photographer_img");
+
+        const img = document.createElement('img');
+        img.setAttribute("src", picture);
+        img.setAttribute("alt", name);
+
+        photographerImg.appendChild(img);
+
+        return (photographerImg);
+    }
+
+    return { name, picture, getUserCardDOM, getUserInfo, getUserImg };
 }

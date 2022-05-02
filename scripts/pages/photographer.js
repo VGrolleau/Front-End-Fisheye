@@ -6,21 +6,24 @@ async function getPhotographers() {
 
 async function displayData(photographers, medias) {
     const photographerHeader = document.querySelector(".photograph-header");
+    const photographerInfo = document.querySelector(".photographer-info");
     const photographersSection = document.querySelector(".photographer_section");
     const urlId = Number(getUrlId());
+
+    photographers.forEach(photographer => {
+        if (urlId === photographer.id) {
+            console.log(photographer);
+            const photographerModel = photographerFactory(photographer);
+            photographerModel.getUserInfo();
+            photographerModel.getUserImg();
+            // const userInfo = photographerModel.getUserInfo();
+            // photographerInfo.appendChild(userInfo);
+        }
+    });
 
     medias.forEach(media => {
         if (urlId === media.photographerId) {
             console.log(media);
-        }
-    });
-
-    photographers.forEach(photographer => {
-        const photographerModel = photographerFactory(photographer);
-        // const userCardDOM = photographerModel.getUserCardDOM();
-        // photographersSection.appendChild(userCardDOM);
-        if (urlId === photographer.id) {
-            console.log(photographer);
         }
     });
 };
