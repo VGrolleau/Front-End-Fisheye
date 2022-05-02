@@ -12,12 +12,9 @@ async function displayData(photographers, medias) {
 
     photographers.forEach(photographer => {
         if (urlId === photographer.id) {
-            console.log(photographer);
             const photographerModel = photographerFactory(photographer);
-            photographerModel.getUserInfo();
-            photographerModel.getUserImg();
-            // const userInfo = photographerModel.getUserInfo();
-            // photographerInfo.appendChild(userInfo);
+            photographerModel.getUserInfo(photographerInfo);
+            photographerInfo.appendChild(photographerModel.getUserImg());
         }
     });
 
