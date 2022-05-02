@@ -4,17 +4,22 @@ async function getPhotographers() {
     return response;
 }
 
-async function displayData(photographers) {
+async function displayData(photographers, medias) {
     const photographerHeader = document.querySelector(".photograph-header");
     const photographersSection = document.querySelector(".photographer_section");
+    const urlId = Number(getUrlId());
 
-    const urlId = getUrlId();
+    medias.forEach(media => {
+        if (urlId === media.photographerId) {
+            console.log(media);
+        }
+    });
 
     photographers.forEach(photographer => {
         const photographerModel = photographerFactory(photographer);
         // const userCardDOM = photographerModel.getUserCardDOM();
         // photographersSection.appendChild(userCardDOM);
-        if (Number(urlId) === photographer.id) {
+        if (urlId === photographer.id) {
             console.log(photographer);
         }
     });
@@ -31,8 +36,8 @@ function getUrlId() {
 
 async function init() {
     // Récupère les datas des photographes
-    const { photographers } = await getPhotographers();
-    displayData(photographers);
+    const { photographers, media } = await getPhotographers();
+    displayData(photographers, media);
 };
 
 init();

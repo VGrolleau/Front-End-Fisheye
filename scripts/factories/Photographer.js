@@ -45,5 +45,10 @@ function photographerFactory(data) {
         return (article);
     }
 
-    return { name, picture, getUserCardDOM }
+    function getUserHeader() {
+        const photographerInfo = document.querySelector(".photographer-info");
+
+    }
+
+    return { name, picture, getUserCardDOM, getUserHeader };
 }
