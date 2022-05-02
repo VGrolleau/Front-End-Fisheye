@@ -7,7 +7,7 @@ class PhotographerFactory {
         this.tagline = data.tagline;
         this.price = data.price;
         this.portrait = data.portrait;
-        this.picture = `assets/photographers/${portrait}`;
+        this.picture = `assets/photographers/${this.portrait}`;
     }
 
     getUserCardDOM() {

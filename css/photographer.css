@@ -6,10 +6,10 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
-}
-
-.photographer-info {
-    float: left;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .photographer_img img {

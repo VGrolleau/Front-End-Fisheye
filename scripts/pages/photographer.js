@@ -7,14 +7,15 @@ async function getPhotographers() {
 async function displayData(photographers, medias) {
     const photographerHeader = document.querySelector(".photograph-header");
     const photographerInfo = document.querySelector(".photographer-info");
+    const photographerImg = document.querySelector(".photographer_img");
     const photographersSection = document.querySelector(".photographer_section");
     const urlId = Number(getUrlId());
 
     photographers.forEach(photographer => {
         if (urlId === photographer.id) {
-            const photographerModel = photographerFactory(photographer);
+            const photographerModel = new PhotographerFactory(photographer);
             photographerModel.getUserInfo(photographerInfo);
-            photographerInfo.appendChild(photographerModel.getUserImg());
+            photographerImg.appendChild(photographerModel.getUserImg());
         }
     });
 
