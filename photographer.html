@@ -22,9 +22,9 @@
         </div>
 
         <div class="photographer_content">
-            <div class="photographer_sort">
-                <label for="sort_by">Trier par</label>
-                <select name="sort_by" id="sort_by">
+            <div class="photographer_order">
+                <label for="order_by">Trier par</label>
+                <select name="order_by" id="order_by">
                     <option value="popularity">Popularité</option>
                     <option value="date">Date</option>
                     <option value="title">Titre</option>
@@ -51,7 +51,15 @@
         </div>
     </div>
 
+    <!-- Factories -->
     <script src="scripts/factories/Photographer.js"></script>
+    <script src="scripts/factories/Media.js"></script>
+
+    <!-- Models -->
+    <script src="scripts/models/Photo.js"></script>
+    <script src="scripts/models/Video.js"></script>
+
+    <!-- Scripts -->
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
 </body>

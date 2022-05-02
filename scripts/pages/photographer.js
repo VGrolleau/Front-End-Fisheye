@@ -21,7 +21,10 @@ async function displayData(photographers, medias) {
 
     medias.forEach(media => {
         if (urlId === media.photographerId) {
-            console.log(media);
+            // let id = urlId;
+            console.log(photographers.id);
+            const mediaModel = new MediaFactory(media);
+            photographersSection.appendChild(mediaModel.getMediaCardDOM());
         }
     });
 };
