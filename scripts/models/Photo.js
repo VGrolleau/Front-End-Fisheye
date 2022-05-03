@@ -20,6 +20,7 @@ class Photo {
         img.setAttribute("alt", this.title);
 
         const titleLikesDiv = document.createElement('div');
+        titleLikesDiv.classList.add('title-likes-div');
         titleLikesDiv.setAttribute("aria-label", "Likes and title bloc");
 
         const pTitle = document.createElement('p');
