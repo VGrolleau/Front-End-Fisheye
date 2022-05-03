@@ -1,35 +1,45 @@
 class Video {
-    constructor(data) {
+    constructor(data, namePhotographer) {
         this.id = data.id;
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.video = data.video;
         this.likes = data.likes;
         this.price = data.price;
+        this.namePhotographer = namePhotographer;
     }
 
-    // getMediaCardDOM() {
-    //     const cardMedia = document.createElement('article');
-    //     cardMedia.classList.add('card-media');
-    //     article.id = this.id;
+    getMediaCardDOM() {
+        console.log("Video media");
+        const cardMedia = document.createElement('article');
+        cardMedia.classList.add('card-media');
+        cardMedia.id = this.id;
 
-    //     // divImgH2.addEventListener("click", () => {
-    //     //     window.location = `photographer.html?id=${this.id}`;
-    //     // });
+        const video = document.createElement('video');
+        video.setAttribute("controls", "");
 
-    //     // const img = document.createElement('img');
-    //     // img.setAttribute("src", this.picture);
-    //     // img.setAttribute("alt", this.title);
+        const sourceVideo = document.createElement('source');
+        sourceVideo.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.video);
+        sourceVideo.setAttribute("type", "video/mp4");
 
-    //     const pTitle = document.createElement('p');
-    //     pTitle.textContent = this.title;
+        video.appendChild(sourceVideo);
 
-    //     const likeDiv = document.createElement('div');
-    //     likeDiv.setAttribute("aria-label", "likes");
+        const titleLikesDiv = document.createElement('div');
+        titleLikesDiv.setAttribute("aria-label", "Likes and title bloc");
 
-    //     cardMedia.appendChild(img);
-    //     cardMedia.appendChild(pTitle);
+        const pTitle = document.createElement('p');
+        pTitle.textContent = this.title;
 
-    //     return cardMedia;
-    // }
+        const likesCount = document.createElement('p');
+        likesCount.innerHTML += this.likes + " <i class=\"fa-solid fa-heart\"></i>";
+        likesCount.setAttribute("aria-label", "Likes");
+
+        titleLikesDiv.appendChild(pTitle);
+        titleLikesDiv.appendChild(likesCount);
+
+        cardMedia.appendChild(video);
+        cardMedia.appendChild(titleLikesDiv);
+
+        return cardMedia;
+    }
 }
