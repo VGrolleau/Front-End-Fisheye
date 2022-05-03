@@ -1,11 +1,12 @@
 class Photo {
-    constructor(data) {
+    constructor(data, namePhotographer) {
         this.id = data.id;
         this.photographerId = data.photographerId;
         this.title = data.title;
         this.image = data.image;
         this.likes = data.likes;
         this.price = data.price;
+        this.namePhotographer = namePhotographer;
     }
 
     getMediaCardDOM() {
@@ -15,7 +16,7 @@ class Photo {
         cardMedia.id = this.id;
 
         const img = document.createElement('img');
-        img.setAttribute("src", this.name + '/' + this.image);
+        img.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.image);
         img.setAttribute("alt", this.title);
 
         const titleLikesDiv = document.createElement('div');

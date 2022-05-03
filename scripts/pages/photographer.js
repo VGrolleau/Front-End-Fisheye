@@ -10,20 +10,25 @@ async function displayData(photographers, medias) {
     const photographerImg = document.querySelector(".photographer_img");
     const photographersSection = document.querySelector(".photographer_section");
     const urlId = Number(getUrlId());
+    let idPhotographer = 0;
+    let namePhotographer = "";
 
     photographers.forEach(photographer => {
         if (urlId === photographer.id) {
             const photographerModel = new PhotographerFactory(photographer);
             photographerModel.getUserInfo(photographerInfo);
             photographerImg.appendChild(photographerModel.getUserImg());
+            idPhotographer = photographer.id;
+            namePhotographer = photographer.name;
+            return idPhotographer, namePhotographer;
         }
     });
 
     medias.forEach(media => {
         if (urlId === media.photographerId) {
             // let id = urlId;
-            console.log(photographers.id);
-            const mediaModel = new MediaFactory(media);
+            const mediaModel = new MediaFactory(media, namePhotographer);
+            console.log(mediaModel);
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
         }
     });
