@@ -4,7 +4,7 @@ async function getPhotographers() {
     return response;
 }
 
-async function displayData(photographers, medias) {
+function displayData(photographers, medias) {
     const photographerHeader = document.querySelector(".photograph-header");
     const photographerInfo = document.querySelector(".photographer-info");
     const photographerImg = document.querySelector(".photographer_img");
@@ -28,7 +28,7 @@ async function displayData(photographers, medias) {
         if (urlId === media.photographerId) {
             // let id = urlId;
             const mediaModel = new MediaFactory(media, namePhotographer);
-            console.log(mediaModel);
+            // console.log(mediaModel);
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
         }
     });
@@ -43,10 +43,16 @@ function getUrlId() {
     return urlId;
 }
 
+// Customisation du select
+// function selectCustomize() {
+
+// }
+
 async function init() {
     // Récupère les datas des photographes
     const { photographers, media } = await getPhotographers();
     displayData(photographers, media);
+    // selectCustomize();
 };
 
 init();

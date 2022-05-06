@@ -12,7 +12,9 @@
 
 <body>
     <header>
-        <img src="assets/images/logo.png" class="logo" />
+        <a href="index.html" aria-label="Fisheye Home page">
+            <img src="assets/images/logo.png" class="logo" alt="Fisheye home page" />
+        </a>
     </header>
 
     <main id="main">
@@ -25,11 +27,23 @@
         <div class="photographer_content">
             <div class="photographer_order">
                 <label for="order_by">Trier par</label>
-                <select name="order_by" id="order_by">
-                    <option value="popularity">Popularité</option>
-                    <option value="date">Date</option>
-                    <option value="title">Titre</option>
-                </select>
+                <div class="custom-select">
+                    <!-- <select name="order_by" id="order_by"> -->
+                    <!-- <select class="select">
+                        <option value="popularity" selected>Popularité</option>
+                        <option value="date">Date</option>
+                        <option value="title">Titre</option>
+                    </select>
+                    <span class="custom-arrow"></span> -->
+                    <button class="order-by-btn"><span>Choisissez un tri :</span> <i class="fa-solid fa-angle-down"></i></button>
+                    <ul>
+                        <li class="order-by-li">Popularité</li>
+                        <div class="border"></div>
+                        <li class="order-by-li">Date</li>
+                        <div class="border"></div>
+                        <li class="order-by-li">Titre</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="photographer_section"></div>
@@ -51,6 +65,47 @@
             </form>
         </div>
     </div>
+
+    <script>
+        const orderByBtn = document.querySelector(".order-by-btn span");
+        const ordersByLi = document.querySelectorAll(".order-by-li");
+        let tab = [];
+        let index;
+
+        ordersByLi.forEach((orderByLi) =>
+            // console.log(orderByLi.textContent);
+            orderByLi.addEventListener('click', () => {
+                // console.log(orderByLi.textContent);
+                orderByBtn.textContent = orderByLi.textContent
+            })
+        );
+
+        // for (const orderByLi of ordersByLi) {
+        //     // console.log(orderByLi.textContent);
+        //     orderByLi.onclick = event => {
+        //             console.log(event.target.textContent);
+        //         }
+        //         // window.onclick = event => {
+        //         //     console.log(event.target.textContent);
+        //         // }
+        // };
+
+        // console.log(tab);
+
+        // for (let i = 0; i < ordersByLi.length; i++) {
+        //     tab.push(ordersByLi[i].innerHTML);
+        //     console.log(tab);
+        // }
+
+        // for (let i = 0; i < ordersByLi.length; i++) {
+        //     console.log(tab);
+        //     ordersByLi[i].onclick = function() {
+        //         console.log();
+        //         index = tab.indexOf(this.innerHTML);
+        //         console.log(this.innerHTML + " index : " + index);
+        //     }
+        // }
+    </script>
 
     <!-- Factories -->
     <script src="scripts/factories/Photographer.js"></script>

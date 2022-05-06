@@ -12,6 +12,13 @@
     align-items: center;
 }
 
+.photographer-info h1 {
+    color: #D3573C;
+    font-size: 3.5em;
+    font-weight: normal;
+    margin: 0;
+}
+
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -36,11 +43,86 @@
     object-fit: cover;
 }
 
+.photographer_content {
+    margin: 50px 0;
+}
+
+.photographer_order {
+    margin: auto 100px;
+    font-weight: 700;
+}
+
+.custom-select {
+    position: relative;
+}
+
+.custom-select ul {
+    margin-top: 10px;
+    padding: 10px 20px;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    width: 170px;
+    height: 170px;
+    left: 0px;
+    list-style: none;
+    border-radius: 5px;
+    opacity: 0;
+    /* pointer-events: none; */
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+    background-color: #901C1C;
+    color: white;
+}
+
+.custom-select li {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    cursor: pointer;
+    /* padding: 0 20px; */
+}
+
+.border {
+    width: 110%;
+    height: 1px;
+    background-color: white;
+}
+
+
+/* .custom-select li:hover {
+    background-color: rgb(197, 173, 181);
+} */
+
+.custom-select button {
+    background-color: #901C1C;
+    text-decoration: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.custom-select button:focus+ul {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0px);
+}
+
+.photographer_content>.photographer_section {
+    margin-top: 50px;
+}
+
 .card-media img,
 .card-media video {
-    height: 350px;
-    width: 300px;
+    width: 350px;
+    height: 300px;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .card-media h2 {
