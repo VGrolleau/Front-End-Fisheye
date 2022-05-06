@@ -10,7 +10,6 @@ class Video {
     }
 
     getMediaCardDOM() {
-        // console.log("Video media");
         const cardMedia = document.createElement('article');
         cardMedia.classList.add('card-media');
         cardMedia.id = this.id;

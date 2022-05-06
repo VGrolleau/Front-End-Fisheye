@@ -59,47 +59,6 @@
         </div>
     </div>
 
-    <script>
-        const orderByBtn = document.querySelector(".order-by-btn span");
-        const ordersByLi = document.querySelectorAll(".order-by-li");
-        let tab = [];
-        let index;
-
-        ordersByLi.forEach((orderByLi) =>
-            // console.log(orderByLi.textContent);
-            orderByLi.addEventListener('click', () => {
-                // console.log(orderByLi.textContent);
-                orderByBtn.textContent = orderByLi.textContent
-            })
-        );
-
-        // for (const orderByLi of ordersByLi) {
-        //     // console.log(orderByLi.textContent);
-        //     orderByLi.onclick = event => {
-        //             console.log(event.target.textContent);
-        //         }
-        //         // window.onclick = event => {
-        //         //     console.log(event.target.textContent);
-        //         // }
-        // };
-
-        // console.log(tab);
-
-        // for (let i = 0; i < ordersByLi.length; i++) {
-        //     tab.push(ordersByLi[i].innerHTML);
-        //     console.log(tab);
-        // }
-
-        // for (let i = 0; i < ordersByLi.length; i++) {
-        //     console.log(tab);
-        //     ordersByLi[i].onclick = function() {
-        //         console.log();
-        //         index = tab.indexOf(this.innerHTML);
-        //         console.log(this.innerHTML + " index : " + index);
-        //     }
-        // }
-    </script>
-
     <!-- Factories -->
     <script src="scripts/factories/Photographer.js"></script>
     <script src="scripts/factories/Media.js"></script>

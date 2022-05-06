@@ -10,7 +10,6 @@ class Photo {
     }
 
     getMediaCardDOM() {
-        // console.log("Image media");
         const cardMedia = document.createElement('article');
         cardMedia.classList.add('card-media');
         cardMedia.id = this.id;

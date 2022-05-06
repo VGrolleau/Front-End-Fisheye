@@ -26,9 +26,7 @@ function displayData(photographers, medias) {
 
     medias.forEach(media => {
         if (urlId === media.photographerId) {
-            // let id = urlId;
             const mediaModel = new MediaFactory(media, namePhotographer);
-            // console.log(mediaModel);
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
         }
     });
@@ -44,15 +42,22 @@ function getUrlId() {
 }
 
 // Customisation du select
-// function selectCustomize() {
+function selectCustomize() {
+    const orderByBtn = document.querySelector(".order-by-btn span");
+    const ordersByLi = document.querySelectorAll(".order-by-li");
 
-// }
+    ordersByLi.forEach((orderByLi) =>
+        orderByLi.addEventListener('click', () => {
+            orderByBtn.textContent = orderByLi.textContent
+        })
+    );
+}
 
 async function init() {
     // Récupère les datas des photographes
     const { photographers, media } = await getPhotographers();
     displayData(photographers, media);
-    // selectCustomize();
+    selectCustomize();
 };
 
 init();
