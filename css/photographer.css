@@ -50,6 +50,12 @@
 .photographer_order {
     margin: auto 100px;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.photographer_order label {
+    margin-right: 25px;
 }
 
 .custom-select {
@@ -105,6 +111,12 @@
     color: white;
     font-size: 18px;
     cursor: pointer;
+    width: 210px;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .custom-select button:focus+ul {
@@ -135,6 +147,8 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    font-size: 1.3em;
+    color: #901C1C;
 }
 
 .modal {
