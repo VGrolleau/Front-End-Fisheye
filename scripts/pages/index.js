@@ -4,11 +4,11 @@ async function getPhotographers() {
     return response;
 }
 
-async function displayData(photographers) {
+function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
 
     photographers.forEach((photographer) => {
-        const photographerModel = photographerFactory(photographer);
+        const photographerModel = new PhotographerFactory(photographer);
         const userCardDOM = photographerModel.getUserCardDOM();
         photographersSection.appendChild(userCardDOM);
     });
