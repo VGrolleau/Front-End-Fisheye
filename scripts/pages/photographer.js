@@ -1,4 +1,6 @@
 let pricePhotographer = 0;
+let idPhotographer = 0;
+let namePhotographer = "";
 
 async function getPhotographers() {
     let rep = await fetch('data/photographers.json', { method: 'GET' });
@@ -12,8 +14,6 @@ function displayData(photographers, medias) {
     const photographerImg = document.querySelector(".photographer_img");
     const photographersSection = document.querySelector(".photographer_section");
     const urlId = Number(getUrlId());
-    let idPhotographer = 0;
-    let namePhotographer = "";
 
     photographers.forEach(photographer => {
         if (urlId === photographer.id) {
@@ -69,12 +69,18 @@ function sidebarPriceLikes() {
     priceLikesSidebar.appendChild(priceDiv);
 }
 
+function getAriaModal() {
+    const modal = document.getElementById("contact_modal");
+    modal.setAttribute("aria-labelledby", "Contact me " + namePhotographer);
+}
+
 async function init() {
     // Récupère les datas des photographes
     const { photographers, media } = await getPhotographers();
     displayData(photographers, media);
     selectCustomize();
     sidebarPriceLikes();
+    getAriaModal();
 };
 
 init();

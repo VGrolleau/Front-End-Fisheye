@@ -166,16 +166,46 @@
     justify-content: space-between;
 }
 
-.modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
+#contact_modal {
+    position: fixed;
+    display: none;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    top: 0;
+    height: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(196, 196, 196, 0.4);
+    animation: fadeIn .3s both;
+}
+
+#contact_modal[aria-hidden="true"] {
+    animation-name: fadeOut;
+}
+
+.modal {
+    overflow: auto;
+    width: 50%;
+    max-width: calc(100vw - 20px);
+    max-height: calc(100vh - 20px);
     padding: 35px;
-    margin: auto;
+    background-color: #DB8876;
+    animation: slideFromTop .5s both;
+    /* border-radius: 5px; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: space-between; */
+    /* margin: auto; */
+}
+
+#contact_modal[aria-hidden="true"] .modal {
+    animation-name: slideToBottom;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
 }
 
 .modal header {
@@ -218,4 +248,40 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideFromTop {
+    from {
+        transform: translateY(-50px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideToBottom {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(50px);
+    }
 }
