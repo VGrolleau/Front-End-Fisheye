@@ -1,3 +1,5 @@
+let pricePhotographer = 0;
+
 async function getPhotographers() {
     let rep = await fetch('data/photographers.json', { method: 'GET' });
     let response = await rep.json();
@@ -20,6 +22,7 @@ function displayData(photographers, medias) {
             photographerImg.appendChild(photographerModel.getUserImg());
             idPhotographer = photographer.id;
             namePhotographer = photographer.name;
+            pricePhotographer = photographer.price;
             return idPhotographer, namePhotographer;
         }
     });
@@ -53,11 +56,25 @@ function selectCustomize() {
     );
 }
 
+function sidebarPriceLikes() {
+    const priceLikesSidebar = document.querySelector(".price-likes-sidebar");
+
+    const likesDiv = document.createElement('div');
+    likesDiv.innerHTML += " <i class=\"fa-solid fa-heart\"></i>";
+
+    const priceDiv = document.createElement('div');
+    priceDiv.innerText = pricePhotographer + "€ / jour";
+
+    priceLikesSidebar.appendChild(likesDiv);
+    priceLikesSidebar.appendChild(priceDiv);
+}
+
 async function init() {
     // Récupère les datas des photographes
     const { photographers, media } = await getPhotographers();
     displayData(photographers, media);
     selectCustomize();
+    sidebarPriceLikes();
 };
 
 init();

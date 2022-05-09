@@ -153,6 +153,19 @@
     color: #901C1C;
 }
 
+.price-likes-sidebar {
+    position: fixed;
+    bottom: 0;
+    right: 36px;
+    display: flex;
+    background-color: #DB8876;
+    padding: 15px 30px;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+    width: 200px;
+    justify-content: space-between;
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
