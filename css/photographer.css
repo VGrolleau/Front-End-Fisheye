@@ -191,12 +191,12 @@
     padding: 35px;
     background-color: #DB8876;
     animation: slideFromTop .5s both;
-    /* border-radius: 5px; */
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* align-items: center; */
-    /* justify-content: space-between; */
-    /* margin: auto; */
+    border-radius: 5px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto; */
 }
 
 #contact_modal[aria-hidden="true"] .modal {

@@ -74,6 +74,11 @@ function getAriaModal() {
     modal.setAttribute("aria-labelledby", "Contact me " + namePhotographer);
 }
 
+function getNameModal() {
+    const modalNamePhotographer = document.querySelector(".modal-name-photographer");
+    modalNamePhotographer.innerText = namePhotographer;
+}
+
 async function init() {
     // Récupère les datas des photographes
     const { photographers, media } = await getPhotographers();
@@ -81,6 +86,7 @@ async function init() {
     selectCustomize();
     sidebarPriceLikes();
     getAriaModal();
+    getNameModal();
 };
 
 init();
