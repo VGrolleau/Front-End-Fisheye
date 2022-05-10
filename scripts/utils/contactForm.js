@@ -1,10 +1,15 @@
+/* eslint-disable no-unused-vars */
+const modal = document.getElementById("contact_modal");
 let activModal = null;
 const focusableSelector = 'input, textarea, button';
 let focusables = [];
 let previouslyFocusedElement = null;
 
+modal.addEventListener("submit", (event) => {
+    event.preventDefault();
+})
+
 function displayModal() {
-    const modal = document.getElementById("contact_modal");
     focusables = Array.from(modal.querySelectorAll(focusableSelector));
     previouslyFocusedElement = document.querySelector(':focus');
     focusables[0].focus();
@@ -17,8 +22,6 @@ function displayModal() {
 function closeModal() {
     if (activModal === null) return;
     if (previouslyFocusedElement !== null) previouslyFocusedElement.focus();
-
-    const modal = document.getElementById("contact_modal");
 
     modal.setAttribute("aria-hidden", "true");
     modal.removeAttribute("aria-modal");
@@ -51,7 +54,6 @@ function focusInModal(event) {
     }
 
     focusables[index].focus();
-    console.log(focusables[index]);
 }
 
 window.addEventListener("keydown", function(event) {

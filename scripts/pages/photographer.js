@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 let pricePhotographer = 0;
 let idPhotographer = 0;
 let namePhotographer = "";
@@ -9,7 +10,6 @@ async function getPhotographers() {
 }
 
 function displayData(photographers, medias) {
-    const photographerHeader = document.querySelector(".photograph-header");
     const photographerInfo = document.querySelector(".photographer-info");
     const photographerImg = document.querySelector(".photographer_img");
     const photographersSection = document.querySelector(".photographer_section");
@@ -33,7 +33,7 @@ function displayData(photographers, medias) {
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
         }
     });
-};
+}
 
 // Récupération de l'id dans l'URL
 function getUrlId() {
@@ -69,6 +69,11 @@ function sidebarPriceLikes() {
     priceLikesSidebar.appendChild(priceDiv);
 }
 
+// function getActionForm() {
+//     const modalForm = document.querySelector(".modal form");
+//     modalForm.setAttribute("action", `photographer.html?id=${idPhotographer}`);
+// }
+
 function getAriaModal() {
     const modal = document.getElementById("contact_modal");
     modal.setAttribute("aria-labelledby", "Contact me " + namePhotographer);
@@ -85,8 +90,9 @@ async function init() {
     displayData(photographers, media);
     selectCustomize();
     sidebarPriceLikes();
+    // getActionForm();
     getAriaModal();
     getNameModal();
-};
+}
 
 init();
