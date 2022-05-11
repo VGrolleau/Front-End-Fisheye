@@ -19,9 +19,10 @@ modal.addEventListener("submit", (event) => {
         }
     });
 
-    // console.log(formSelectors.length);
-
-    formValuesComplete === formSelectors.length ? console.log("formValuesComplete :", formValuesComplete) : console.log("");
+    if (formValuesComplete === formSelectors.length) {
+        // console.log("formValuesComplete :", formValuesComplete);
+        document.contactForm.reset();
+    }
 
     closeModal();
 })
