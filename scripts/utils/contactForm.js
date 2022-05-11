@@ -22,6 +22,7 @@ modal.addEventListener("submit", (event) => {
                         console.warn("Le prénom doit faire plus de 2 caractères");
                     } else {
                         selector.labels.forEach(label => console.log(`${label.textContent} : "${selector.value}"`));
+                        formValuesComplete += 1;
                     }
                     break;
 
@@ -30,6 +31,7 @@ modal.addEventListener("submit", (event) => {
                         console.warn("Le nom doit contenir minimum 1 caractère");
                     } else {
                         selector.labels.forEach(label => console.log(`${label.textContent} : "${selector.value}"`));
+                        formValuesComplete += 1;
                     }
                     break;
 
@@ -38,24 +40,25 @@ modal.addEventListener("submit", (event) => {
                         console.warn("Merci de renseigner un email valide");
                     } else {
                         selector.labels.forEach(label => console.log(`${label.textContent} : "${selector.value}"`));
+                        formValuesComplete += 1;
                     }
                     break;
 
                 case "contact_message":
                     selector.labels.forEach(label => console.log(`${label.textContent} : "${selector.value}"`));
+                    formValuesComplete += 1;
                     break;
 
                 default:
                     break;
             }
-
-            formValuesComplete += 1;
         }
     });
 
     if (formValuesComplete === formSelectors.length) {
         closeModal();
         document.contactForm.reset();
+        formValuesComplete = 0;
     }
 })
 
