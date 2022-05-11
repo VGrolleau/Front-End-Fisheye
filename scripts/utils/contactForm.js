@@ -10,21 +10,53 @@ modal.addEventListener("submit", (event) => {
     const formSelector = 'input, textarea';
     const formSelectors = document.querySelectorAll(formSelector);
     let formValuesComplete = 0;
+    const regexEmail = /^(([^<>()[\]\\.,;:\s@\\"]+(\.[^<>()[\]\\.,;:\s@\\"]+)*)|(\\".+\\"))@(([^<>()[\]\\.,;:\s@\\"]+\.)+[^<>()[\]\\.,;:\s@\\"]{2,})$/;
+
     formSelectors.forEach(selector => {
         if (selector.value === "") {
             selector.labels.forEach(label => console.warn(`Le champ "${label.textContent}" est vide`));
         } else {
-            selector.labels.forEach(label => console.log(`${label.textContent} : ${selector.value}`));
+            switch (selector.id) {
+                case "contact_firstname":
+                    if (selector.value.length <= 2) {
+                        console.warn("Le prénom doit faire plus de 2 caractères");
+                    } else {
+                        selector.labels.forEach(label => console.log(`${label.textContent} : "${selector.value}"`));
+                    }
+                    break;
+
+                case "contact_lastname":
+                    if (selector.value.length <= 1) {
+                        console.warn("Le nom doit contenir minimum 1 caractère");
+                    } else {
+                        selector.labels.forEach(label => console.log(`${label.textContent} : "${selector.value}"`));
+                    }
+                    break;
+
+                case "contact_email":
+                    if (!regexEmail.test(selector.value)) {
+                        console.warn("Merci de renseigner un email valide");
+                    } else {
+                        selector.labels.forEach(label => console.log(`${label.textContent} : "${selector.value}"`));
+                    }
+                    break;
+
+                case "contact_message":
+                    selector.labels.forEach(label => console.log(`${label.textContent} : "${selector.value}"`));
+                    break;
+
+                default:
+                    break;
+            }
+
             formValuesComplete += 1;
         }
     });
 
     if (formValuesComplete === formSelectors.length) {
-        // console.log("formValuesComplete :", formValuesComplete);
+        closeModal();
         document.contactForm.reset();
     }
-
-    closeModal();
 })
 
 function displayModal() {
