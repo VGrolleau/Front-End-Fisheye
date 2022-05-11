@@ -7,6 +7,23 @@ let previouslyFocusedElement = null;
 
 modal.addEventListener("submit", (event) => {
     event.preventDefault();
+    const formSelector = 'input, textarea';
+    const formSelectors = document.querySelectorAll(formSelector);
+    let formValuesComplete = 0;
+    formSelectors.forEach(selector => {
+        if (selector.value === "") {
+            selector.labels.forEach(label => console.warn(`Le champ "${label.textContent}" est vide`));
+        } else {
+            selector.labels.forEach(label => console.log(`${label.textContent} : ${selector.value}`));
+            formValuesComplete += 1;
+        }
+    });
+
+    // console.log(formSelectors.length);
+
+    formValuesComplete === formSelectors.length ? console.log("formValuesComplete :", formValuesComplete) : console.log("");
+
+    closeModal();
 })
 
 function displayModal() {
