@@ -49,16 +49,33 @@
         <aside class="price-likes-sidebar"></aside>
     </main>
 
-    <div id="contact_modal">
+    <div id="contact_modal" aria-hidden="true" role="dialog">
         <div class="modal">
             <header>
-                <h2>Contactez-moi</h2>
-                <img src="assets/icons/close.svg" onclick="closeModal()" />
+                <h2>Contactez-moi<br><span class="modal-name-photographer"></span></h2>
+                <button class="modal-close" onclick="closeModal()" aria-label="Close contact form">
+                    <img src="assets/icons/close.svg" />
+                </button>
             </header>
-            <form>
+            <form name="contactForm">
                 <div>
-                    <label>Prénom</label>
-                    <input />
+                    <label for="contact_firstname">Prénom</label>
+                    <input type="text" name="contact_firstname" id="contact_firstname" />
+                </div>
+
+                <div>
+                    <label for="contact_lastname">Nom</label>
+                    <input type="text" name="contact_lastname" id="contact_lastname">
+                </div>
+
+                <div>
+                    <label for="contact_email">Email</label>
+                    <input type="email" name="contact_email" id="contact_email">
+                </div>
+
+                <div>
+                    <label for="contact_message">Votre message</label>
+                    <textarea name="contact_message" id="contact_message"></textarea>
                 </div>
                 <button class="contact_button">Envoyer</button>
             </form>
