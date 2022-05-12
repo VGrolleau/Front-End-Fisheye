@@ -60,6 +60,7 @@
 
 .custom-select {
     position: relative;
+    z-index: 1;
 }
 
 .custom-select ul {
