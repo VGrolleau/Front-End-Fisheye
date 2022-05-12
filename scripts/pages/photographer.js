@@ -3,8 +3,6 @@ let pricePhotographer = 0;
 let idPhotographer = 0;
 let namePhotographer = "";
 let mediasPhotographer = [];
-let currentMediaModel = "";
-let currentMediaId = 0;
 
 async function getPhotographers() {
     let rep = await fetch('data/photographers.json', { method: 'GET' });
@@ -34,9 +32,7 @@ function displayData(photographers, medias) {
         if (urlId === media.photographerId) {
             const mediaModel = new MediaFactory(media, namePhotographer);
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
-            // console.log(mediaModel);
             mediasPhotographer.push(mediaModel);
-            // console.log(mediasPhotographer);
             currentMediaModel = mediaModel;
         }
     });
@@ -89,7 +85,7 @@ function getNameModal() {
 const lightbox = document.querySelector('.lightbox');
 
 function displayLightbox(idMedia) {
-    lightbox.style.display = "block";
+    lightbox.style.display = "flex";
     document.body.style.overflow = "hidden";
 
     getLightboxImg(idMedia);
@@ -102,20 +98,17 @@ function closeLightbox() {
 
 function getLightboxImg(idMedia) {
     const lightboxImgContainer = document.querySelector(".lightbox__container");
-    // console.log(currentMediaModel);
-    // console.log(mediasPhotographer);
-    // console.log(mediasPhotographer.getElementById(idMedia));
-    // console.log(idMedia);
+    // const titleMedia = document.querySelector(".media-title");
     mediasPhotographer.forEach(mediaPhotographer => {
-            // console.log(typeof mediaPhotographer.id);
-            // console.log(typeof idMedia);
-            if (mediaPhotographer.id === idMedia) {
-                console.log(mediaPhotographer);
-                lightboxImgContainer.innerHTML = `<img src="assets/${namePhotographer}/${mediaPhotographer.image}" alt="${mediaPhotographer.title}">`;
-            }
-            // console.log(mediaPhotographer)
-        })
-        // lightboxImgContainer.
+        if (mediaPhotographer.id === idMedia) {
+            lightboxImgContainer.innerHTML = `<img src="assets/${namePhotographer}/${mediaPhotographer.image}" alt="${mediaPhotographer.title}">`;
+
+            const titleMedia = document.createElement('p');
+            titleMedia.innerText = mediaPhotographer.title;
+
+            lightboxImgContainer.appendChild(titleMedia);
+        }
+    })
 }
 
 async function init() {
@@ -126,7 +119,6 @@ async function init() {
     sidebarPriceLikes();
     getAriaModal();
     getNameModal();
-    // getLightboxImg();
 }
 
 init();
