@@ -17,7 +17,7 @@ class Photo {
         const img = document.createElement('img');
         img.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.image);
         img.setAttribute("alt", this.title);
-        img.setAttribute("onclick", "displayLightbox()");
+        img.setAttribute("onclick", `displayLightbox(${this.id})`);
 
         const titleLikesDiv = document.createElement('div');
         titleLikesDiv.classList.add('title-likes-div');

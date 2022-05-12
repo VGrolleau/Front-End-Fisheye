@@ -2,6 +2,9 @@
 let pricePhotographer = 0;
 let idPhotographer = 0;
 let namePhotographer = "";
+let mediasPhotographer = [];
+let currentMediaModel = "";
+let currentMediaId = 0;
 
 async function getPhotographers() {
     let rep = await fetch('data/photographers.json', { method: 'GET' });
@@ -31,7 +34,10 @@ function displayData(photographers, medias) {
         if (urlId === media.photographerId) {
             const mediaModel = new MediaFactory(media, namePhotographer);
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
-            console.log(mediaModel);
+            // console.log(mediaModel);
+            mediasPhotographer.push(mediaModel);
+            // console.log(mediasPhotographer);
+            currentMediaModel = mediaModel;
         }
     });
 }
@@ -80,9 +86,36 @@ function getNameModal() {
     modalNamePhotographer.innerText = namePhotographer;
 }
 
-function getLightboxImg() {
+const lightbox = document.querySelector('.lightbox');
+
+function displayLightbox(idMedia) {
+    lightbox.style.display = "block";
+    document.body.style.overflow = "hidden";
+
+    getLightboxImg(idMedia);
+}
+
+function closeLightbox() {
+    lightbox.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+function getLightboxImg(idMedia) {
     const lightboxImgContainer = document.querySelector(".lightbox__container");
-    // lightboxImg.
+    // console.log(currentMediaModel);
+    // console.log(mediasPhotographer);
+    // console.log(mediasPhotographer.getElementById(idMedia));
+    // console.log(idMedia);
+    mediasPhotographer.forEach(mediaPhotographer => {
+            // console.log(typeof mediaPhotographer.id);
+            // console.log(typeof idMedia);
+            if (mediaPhotographer.id === idMedia) {
+                console.log(mediaPhotographer);
+                lightboxImgContainer.innerHTML = `<img src="assets/${namePhotographer}/${mediaPhotographer.image}" alt="${mediaPhotographer.title}">`;
+            }
+            // console.log(mediaPhotographer)
+        })
+        // lightboxImgContainer.
 }
 
 async function init() {
@@ -93,7 +126,7 @@ async function init() {
     sidebarPriceLikes();
     getAriaModal();
     getNameModal();
-    getLightboxImg();
+    // getLightboxImg();
 }
 
 init();
