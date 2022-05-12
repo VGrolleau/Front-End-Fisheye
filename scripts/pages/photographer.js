@@ -31,6 +31,7 @@ function displayData(photographers, medias) {
         if (urlId === media.photographerId) {
             const mediaModel = new MediaFactory(media, namePhotographer);
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
+            console.log(mediaModel);
         }
     });
 }
@@ -69,11 +70,6 @@ function sidebarPriceLikes() {
     priceLikesSidebar.appendChild(priceDiv);
 }
 
-// function getActionForm() {
-//     const modalForm = document.querySelector(".modal form");
-//     modalForm.setAttribute("action", `photographer.html?id=${idPhotographer}`);
-// }
-
 function getAriaModal() {
     const modal = document.getElementById("contact_modal");
     modal.setAttribute("aria-labelledby", "Contact me " + namePhotographer);
@@ -84,15 +80,20 @@ function getNameModal() {
     modalNamePhotographer.innerText = namePhotographer;
 }
 
+function getLightboxImg() {
+    const lightboxImgContainer = document.querySelector(".lightbox__container");
+    // lightboxImg.
+}
+
 async function init() {
     // Récupère les datas des photographes
     const { photographers, media } = await getPhotographers();
     displayData(photographers, media);
     selectCustomize();
     sidebarPriceLikes();
-    // getActionForm();
     getAriaModal();
     getNameModal();
+    getLightboxImg();
 }
 
 init();

@@ -16,6 +16,7 @@ class Video {
 
         const video = document.createElement('video');
         video.setAttribute("controls", "");
+        video.setAttribute("onclick", "displayLightbox()");
 
         const sourceVideo = document.createElement('source');
         sourceVideo.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.video);
