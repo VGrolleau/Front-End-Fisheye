@@ -98,7 +98,11 @@ function closeLightbox() {
 
 function getLightboxImg(idMedia) {
     const lightboxImgContainer = document.querySelector(".lightbox__container");
-    // const titleMedia = document.querySelector(".media-title");
+    const prevButton = document.querySelector(".lightbox__prev");
+    const nextButton = document.querySelector(".lightbox__next");
+    const closeButton = document.querySelector(".lightbox__close");
+    let indexMedia = 0;
+    // console.log(mediasPhotographer);
     mediasPhotographer.forEach(mediaPhotographer => {
         if (mediaPhotographer.id === idMedia) {
             lightboxImgContainer.innerHTML = `<img src="assets/${namePhotographer}/${mediaPhotographer.image}" alt="${mediaPhotographer.title}">`;
@@ -107,7 +111,37 @@ function getLightboxImg(idMedia) {
             titleMedia.innerText = mediaPhotographer.title;
 
             lightboxImgContainer.appendChild(titleMedia);
+
+            indexMedia = mediasPhotographer.findIndex(element => element === mediaPhotographer);
+            // console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
         }
+    })
+
+    prevButton.addEventListener("click", function() {
+        console.log("clicked prev");
+        indexMedia--;
+        // console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
+        if (indexMedia < 0) {
+            indexMedia = mediasPhotographer.length - 1;
+        }
+        console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
+
+        getLightboxImg(mediasPhotographer[indexMedia].id);
+    })
+
+    nextButton.addEventListener("click", function() {
+        console.log("clicked next");
+        indexMedia++;
+        if (indexMedia >= mediasPhotographer.length) {
+            indexMedia = 0;
+        }
+        console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
+
+        getLightboxImg(mediasPhotographer[indexMedia].id);
+    })
+
+    closeButton.addEventListener("click", function() {
+        indexMedia = 0;
     })
 }
 
