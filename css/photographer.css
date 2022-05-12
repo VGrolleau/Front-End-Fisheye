@@ -131,6 +131,16 @@
     margin-top: 50px;
 }
 
+.card-media {
+    position: relative;
+}
+
+.play-img {
+    position: absolute;
+    color: #901C1C;
+    top: 35%;
+}
+
 .card-media img,
 .card-media video {
     width: 350px;

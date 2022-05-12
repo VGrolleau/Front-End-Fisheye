@@ -104,8 +104,17 @@ function getLightboxImg(idMedia) {
     let indexMedia = 0;
     // console.log(mediasPhotographer);
     mediasPhotographer.forEach(mediaPhotographer => {
+
         if (mediaPhotographer.id === idMedia) {
-            lightboxImgContainer.innerHTML = `<img src="assets/${namePhotographer}/${mediaPhotographer.image}" alt="${mediaPhotographer.title}">`;
+            if ("video" in mediaPhotographer) {
+                console.log("video");
+                lightboxImgContainer.innerHTML = `<video controls="">
+                <source src="assets/${namePhotographer}/${mediaPhotographer.video}" type="video/mp4">
+                </video>`;
+            } else {
+                console.log("not video");
+                lightboxImgContainer.innerHTML = `<img src="assets/${namePhotographer}/${mediaPhotographer.image}" alt="${mediaPhotographer.title}">`;
+            }
 
             const titleMedia = document.createElement('p');
             titleMedia.innerText = mediaPhotographer.title;

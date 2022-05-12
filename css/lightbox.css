@@ -37,7 +37,8 @@
     cursor: pointer;
 }
 
-.lightbox__container img {
+.lightbox__container img,
+.lightbox__container video {
     max-width: 100%;
     height: calc(100vh - 100px);
     animation: lightboxIn .5s;
