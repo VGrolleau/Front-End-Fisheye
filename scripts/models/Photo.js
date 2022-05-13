@@ -17,6 +17,7 @@ class Photo {
         const aImg = document.createElement('a');
         aImg.setAttribute("href", "");
         aImg.setAttribute("onclick", `displayLightbox(${this.id})`);
+        aImg.classList.add("a-img");
 
         const img = document.createElement('img');
         img.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.image);

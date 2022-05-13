@@ -41,6 +41,11 @@ function displayData(photographers, medias) {
             currentMediaModel = mediaModel;
         }
     });
+
+    const aImg = document.querySelectorAll(".a-img");
+    aImg.forEach(a => a.addEventListener("click", (event) => {
+        event.preventDefault();
+    }))
 }
 
 // Récupération de l'id dans l'URL
