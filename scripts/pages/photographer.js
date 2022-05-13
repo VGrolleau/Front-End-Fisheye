@@ -3,6 +3,7 @@ let pricePhotographer = 0;
 let idPhotographer = 0;
 let namePhotographer = "";
 let mediasPhotographer = [];
+let previouslyFocused = null;
 // const focusableSelectors = 'button, img, video';
 // let focusablesArray = [];
 
@@ -95,6 +96,8 @@ function getNameModal() {
 const lightbox = document.querySelector('.lightbox');
 
 function displayLightbox(idMedia) {
+    previouslyFocused = document.querySelector(':focus');
+    console.log(previouslyFocused);
     lightbox.style.display = "flex";
     document.body.style.overflow = "hidden";
 
@@ -104,6 +107,7 @@ function displayLightbox(idMedia) {
 function closeLightbox() {
     lightbox.style.display = "none";
     document.body.style.overflow = "auto";
+    if (previouslyFocused !== null) previouslyFocused.focus();
 }
 
 function getLightboxImg(idMedia) {
