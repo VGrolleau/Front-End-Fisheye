@@ -60,6 +60,7 @@
 
 .custom-select {
     position: relative;
+    z-index: 1;
 }
 
 .custom-select ul {
@@ -131,12 +132,28 @@
     margin-top: 50px;
 }
 
+.card-media {
+    position: relative;
+}
+
+.play-img {
+    position: absolute;
+    color: #901C1C;
+    top: 35%;
+}
+
 .card-media img,
 .card-media video {
     width: 350px;
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.card-media img:focus,
+.card-media img:focus-visible {
+    outline: 1px dotted;
 }
 
 .card-media h2 {
@@ -164,136 +181,4 @@
     font-weight: bold;
     width: 200px;
     justify-content: space-between;
-}
-
-#contact_modal {
-    position: fixed;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    top: 0;
-    height: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(196, 196, 196, 0.4);
-    animation: fadeIn .3s both;
-}
-
-#contact_modal[aria-hidden="true"] {
-    animation-name: fadeOut;
-}
-
-.modal {
-    overflow: auto;
-    width: 35%;
-    max-width: calc(100vw - 20px);
-    max-height: calc(100vh - 20px);
-    padding: 35px;
-    background-color: #DB8876;
-    animation: slideFromTop .5s both;
-    border-radius: 5px;
-}
-
-#contact_modal[aria-hidden="true"] .modal {
-    animation-name: slideToBottom;
-}
-
-.modal-close {
-    background: transparent;
-    border: none;
-}
-
-.modal header {
-    justify-content: space-between;
-    width: 100%;
-    height: auto;
-    align-items: baseline;
-}
-
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
-    font-size: 3.5em;
-    font-weight: normal;
-    margin: 0 0 20px;
-}
-
-form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-}
-
-form label {
-    color: #312E2E;
-    font-size: 2em;
-}
-
-form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
-}
-
-form input,
-form textarea {
-    width: calc(100% - 16px);
-    border: none;
-    border-radius: 5px;
-    padding: 8px;
-}
-
-form input {
-    height: 50px;
-}
-
-form textarea {
-    height: 120px;
-    resize: none;
-}
-
-.modal .contact_button {
-    position: relative;
-    margin: initial;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
-
-@keyframes slideFromTop {
-    from {
-        transform: translateY(-50px);
-    }
-    to {
-        transform: translateY(0);
-    }
-}
-
-@keyframes slideToBottom {
-    from {
-        transform: translateY(0);
-    }
-    to {
-        transform: translateY(50px);
-    }
 }

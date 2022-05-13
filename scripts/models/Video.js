@@ -13,9 +13,10 @@ class Video {
         const cardMedia = document.createElement('article');
         cardMedia.classList.add('card-media');
         cardMedia.id = this.id;
+        cardMedia.innerHTML += `<i class="fa-solid fa-circle-play fa-4x play-img"></i>`;
 
         const video = document.createElement('video');
-        video.setAttribute("controls", "");
+        video.setAttribute("onclick", `displayLightbox(${this.id})`);
 
         const sourceVideo = document.createElement('source');
         sourceVideo.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.video);

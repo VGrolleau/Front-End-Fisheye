@@ -14,9 +14,17 @@ class Photo {
         cardMedia.classList.add('card-media');
         cardMedia.id = this.id;
 
+        const aImg = document.createElement('a');
+        aImg.setAttribute("href", "");
+        aImg.setAttribute("onclick", `displayLightbox(${this.id})`);
+        aImg.classList.add("a-img");
+
         const img = document.createElement('img');
         img.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.image);
         img.setAttribute("alt", this.title);
+        img.setAttribute("onclick", `displayLightbox(${this.id})`);
+
+        aImg.appendChild(img);
 
         const titleLikesDiv = document.createElement('div');
         titleLikesDiv.classList.add('title-likes-div');
@@ -32,7 +40,7 @@ class Photo {
         titleLikesDiv.appendChild(pTitle);
         titleLikesDiv.appendChild(likesCount);
 
-        cardMedia.appendChild(img);
+        cardMedia.appendChild(aImg);
         cardMedia.appendChild(titleLikesDiv);
 
         return cardMedia;

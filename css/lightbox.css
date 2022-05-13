@@ -1,0 +1,70 @@
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    overflow: auto;
+    animation: lightboxIn .5s;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 2;
+}
+
+.lightbox__next,
+.lightbox__prev {
+    border: none;
+    background: none;
+    width: 10%;
+    height: 100vh;
+    cursor: pointer;
+    color: #901C1C;
+}
+
+.lightbox__close {
+    border: none;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 12;
+    color: #901C1C;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 10%;
+    height: auto;
+    cursor: pointer;
+}
+
+.lightbox__container img,
+.lightbox__container video {
+    max-width: 100%;
+    height: calc(100vh - 100px);
+    animation: lightboxIn .5s;
+    border-radius: 5px;
+}
+
+.lightbox__container p {
+    color: #901C1C;
+    font-size: 1.5em;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.lightbox__container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+@keyframes lightboxIn {
+    form {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

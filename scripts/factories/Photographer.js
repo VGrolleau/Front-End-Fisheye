@@ -1,4 +1,7 @@
 class PhotographerFactory {
+    /**
+     * @param {data} data Photographer datas
+     */
     constructor(data) {
         this.name = data.name;
         this.id = data.id;
@@ -10,6 +13,10 @@ class PhotographerFactory {
         this.picture = `assets/photographers/${this.portrait}`;
     }
 
+    /**
+     * 
+     * @return {HTMLElement}
+     */
     getUserCardDOM() {
         const article = document.createElement('article');
         article.id = this.id;
