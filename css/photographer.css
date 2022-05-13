@@ -148,6 +148,12 @@
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.card-media img:focus,
+.card-media img:focus-visible {
+    outline: 1px dotted;
 }
 
 .card-media h2 {

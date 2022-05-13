@@ -10,6 +10,7 @@
     animation: lightboxIn .5s;
     justify-content: space-between;
     align-items: center;
+    z-index: 2;
 }
 
 .lightbox__next,

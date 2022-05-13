@@ -3,6 +3,8 @@ let pricePhotographer = 0;
 let idPhotographer = 0;
 let namePhotographer = "";
 let mediasPhotographer = [];
+// const focusableSelectors = 'button, img, video';
+// let focusablesArray = [];
 
 async function getPhotographers() {
     let rep = await fetch('data/photographers.json', { method: 'GET' });
@@ -15,6 +17,9 @@ function displayData(photographers, medias) {
     const photographerImg = document.querySelector(".photographer_img");
     const photographersSection = document.querySelector(".photographer_section");
     const urlId = Number(getUrlId());
+
+    // focusablesArray = Array.from(document.body.querySelectorAll(focusableSelectors));
+    // console.log(focusablesArray);
 
     photographers.forEach(photographer => {
         if (urlId === photographer.id) {
