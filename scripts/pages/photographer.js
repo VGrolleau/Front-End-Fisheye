@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+const lightbox = document.querySelector('.lightbox');
 let pricePhotographer = 0;
 let idPhotographer = 0;
 let namePhotographer = "";
@@ -7,6 +8,7 @@ let previouslyFocused = null;
 const focusableSelectorsLightbox = 'button';
 let focusablesLightboxArray = [];
 let activLightbox = null;
+let likesNumber = 0;
 
 async function getPhotographers() {
     let rep = await fetch('data/photographers.json', { method: 'GET' });
@@ -38,6 +40,9 @@ function displayData(photographers, medias) {
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
             mediasPhotographer.push(mediaModel);
             currentMediaModel = mediaModel;
+            console.log(media.likes);
+            likesNumber += media.likes;
+            console.log(likesNumber);
         }
     });
 
@@ -72,13 +77,18 @@ function sidebarPriceLikes() {
     const priceLikesSidebar = document.querySelector(".price-likes-sidebar");
 
     const likesDiv = document.createElement('div');
-    likesDiv.innerHTML += " <i class=\"fa-solid fa-heart\"></i>";
+    likesDiv.innerHTML += `${likesNumber} <i class="fa-solid fa-heart"></i>`;
 
     const priceDiv = document.createElement('div');
     priceDiv.innerText = pricePhotographer + "€ / jour";
 
     priceLikesSidebar.appendChild(likesDiv);
     priceLikesSidebar.appendChild(priceDiv);
+}
+
+function getTotalLikes() {
+    console.log(likesNumber);
+    // const totalLikes = document.get
 }
 
 function getAriaModal() {
@@ -90,8 +100,6 @@ function getNameModal() {
     const modalNamePhotographer = document.querySelector(".modal-name-photographer");
     modalNamePhotographer.innerText = namePhotographer;
 }
-
-const lightbox = document.querySelector('.lightbox');
 
 function displayLightbox(idMedia) {
     focusablesLightboxArray = Array.from(lightbox.querySelectorAll(focusableSelectorsLightbox));
@@ -210,6 +218,7 @@ async function init() {
     displayData(photographers, media);
     selectCustomize();
     sidebarPriceLikes();
+    getTotalLikes();
     getAriaModal();
     getNameModal();
 }
