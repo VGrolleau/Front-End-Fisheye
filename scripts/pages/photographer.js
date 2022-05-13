@@ -4,8 +4,9 @@ let idPhotographer = 0;
 let namePhotographer = "";
 let mediasPhotographer = [];
 let previouslyFocused = null;
-// const focusableSelectors = 'button, img, video';
-// let focusablesArray = [];
+const focusableSelectorsLightbox = 'button';
+let focusablesLightboxArray = [];
+let activLightbox = null;
 
 async function getPhotographers() {
     let rep = await fetch('data/photographers.json', { method: 'GET' });
@@ -18,9 +19,6 @@ function displayData(photographers, medias) {
     const photographerImg = document.querySelector(".photographer_img");
     const photographersSection = document.querySelector(".photographer_section");
     const urlId = Number(getUrlId());
-
-    // focusablesArray = Array.from(document.body.querySelectorAll(focusableSelectors));
-    // console.log(focusablesArray);
 
     photographers.forEach(photographer => {
         if (urlId === photographer.id) {
@@ -96,18 +94,29 @@ function getNameModal() {
 const lightbox = document.querySelector('.lightbox');
 
 function displayLightbox(idMedia) {
+    focusablesLightboxArray = Array.from(lightbox.querySelectorAll(focusableSelectorsLightbox));
     previouslyFocused = document.querySelector(':focus');
-    console.log(previouslyFocused);
+    focusablesLightboxArray[0].focus();
     lightbox.style.display = "flex";
+    lightbox.removeAttribute("aria-hidden");
+    lightbox.setAttribute("aria-modal", "true");
     document.body.style.overflow = "hidden";
 
     getLightboxImg(idMedia);
+    activLightbox = lightbox;
 }
 
 function closeLightbox() {
+    if (activLightbox === null) return;
+    if (previouslyFocused !== null) previouslyFocused.focus();
+
+    lightbox.setAttribute("aria-hidden", "true");
+    lightbox.removeAttribute("aria-modal");
+    lightbox.querySelector('.lightbox__close').removeEventListener('click', closeLightbox);
+
     lightbox.style.display = "none";
     document.body.style.overflow = "auto";
-    if (previouslyFocused !== null) previouslyFocused.focus();
+    activLightbox = null;
 }
 
 function getLightboxImg(idMedia) {
@@ -116,17 +125,13 @@ function getLightboxImg(idMedia) {
     const nextButton = document.querySelector(".lightbox__next");
     const closeButton = document.querySelector(".lightbox__close");
     let indexMedia = 0;
-    // console.log(mediasPhotographer);
     mediasPhotographer.forEach(mediaPhotographer => {
-
         if (mediaPhotographer.id === idMedia) {
             if ("video" in mediaPhotographer) {
-                console.log("video");
                 lightboxImgContainer.innerHTML = `<video controls="">
                 <source src="assets/${namePhotographer}/${mediaPhotographer.video}" type="video/mp4">
                 </video>`;
             } else {
-                console.log("not video");
                 lightboxImgContainer.innerHTML = `<img src="assets/${namePhotographer}/${mediaPhotographer.image}" alt="${mediaPhotographer.title}">`;
             }
 
@@ -136,7 +141,7 @@ function getLightboxImg(idMedia) {
             lightboxImgContainer.appendChild(titleMedia);
 
             indexMedia = mediasPhotographer.findIndex(element => element === mediaPhotographer);
-            // console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
+            console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
         }
     })
 
@@ -167,6 +172,37 @@ function getLightboxImg(idMedia) {
         indexMedia = 0;
     })
 }
+
+function focusInLightbox(event) {
+    event.preventDefault();
+    let indexFocusLightbox = focusablesLightboxArray.findIndex(element => element === activLightbox.querySelector(':focus'));
+
+    if (event.shiftKey === true) {
+        indexFocusLightbox--;
+    } else {
+        indexFocusLightbox++;
+    }
+
+    if (indexFocusLightbox >= focusablesLightboxArray.length) {
+        indexFocusLightbox = 0;
+    }
+
+    if (indexFocusLightbox < 0) {
+        indexFocusLightbox = focusablesLightboxArray.length - 1;
+    }
+
+    focusablesLightboxArray[indexFocusLightbox].focus();
+}
+
+lightbox.addEventListener("keydown", function(event) {
+    if (event.key === "Escape" || event.key === "Esc") {
+        closeLightbox();
+    }
+
+    if (event.key === "Tab" && activLightbox !== null) {
+        focusInLightbox(event);
+    }
+})
 
 async function init() {
     // Récupère les datas des photographes
