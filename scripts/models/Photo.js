@@ -34,8 +34,10 @@ class Photo {
         pTitle.textContent = this.title;
 
         const likesCount = document.createElement('p');
-        likesCount.innerHTML += this.likes + " <i class=\"fa-solid fa-heart\"></i>";
+        likesCount.classList.add("like-count");
+        likesCount.innerHTML += `<span>${this.likes}</span> <i class="fa-solid fa-heart"></i>`;
         likesCount.setAttribute("aria-label", "Likes");
+        likesCount.setAttribute("onclick", "updateLikes()");
 
         titleLikesDiv.appendChild(pTitle);
         titleLikesDiv.appendChild(likesCount);

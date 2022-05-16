@@ -40,9 +40,7 @@ function displayData(photographers, medias) {
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
             mediasPhotographer.push(mediaModel);
             currentMediaModel = mediaModel;
-            console.log(media.likes);
             likesNumber += media.likes;
-            console.log(likesNumber);
         }
     });
 
@@ -77,7 +75,7 @@ function sidebarPriceLikes() {
     const priceLikesSidebar = document.querySelector(".price-likes-sidebar");
 
     const likesDiv = document.createElement('div');
-    likesDiv.innerHTML += `${likesNumber} <i class="fa-solid fa-heart"></i>`;
+    likesDiv.innerHTML += `<span class="like-span">${likesNumber}</span> <i class="fa-solid fa-heart"></i>`;
 
     const priceDiv = document.createElement('div');
     priceDiv.innerText = pricePhotographer + "€ / jour";
@@ -86,9 +84,62 @@ function sidebarPriceLikes() {
     priceLikesSidebar.appendChild(priceDiv);
 }
 
-function getTotalLikes() {
-    console.log(likesNumber);
-    // const totalLikes = document.get
+function updateLikes() {
+    const likesCount = document.querySelectorAll(".like-count span");
+    let liked = false;
+    let likeMedia = false;
+    // console.log(likesCount);
+
+    likesCount.forEach(counter => {
+        let counterContent = Number(counter.textContent);
+        const likeSpan = document.querySelector(".like-span");
+
+        const addLike = function() {
+            if (!liked) {
+                // currentCounter = event.target;
+                // console.log(currentCounter.innerText);
+                console.log('1', counterContent, likesNumber);
+                counterContent += 1;
+                counter.innerText = counterContent;
+                likesNumber += 1;
+                likeSpan.textContent = likesNumber;
+                counter.removeEventListener('click', addLike);
+                liked = true;
+                console.log('2', counterContent, likesNumber);
+                // return (counterContent, likesNumber);
+            }
+            // console.log('3', counterContent, likesNumber);
+        }
+        counter.addEventListener("click", addLike);
+
+        const removeLike = function() {
+            if (liked) {
+                console.log('1bis', counterContent, likesNumber);
+                counterContent -= 1;
+                counter.innerText = counterContent;
+                likesNumber -= 1;
+                likeSpan.textContent = likesNumber;
+                counter.removeEventListener('click', removeLike);
+                liked = false;
+                console.log('2bis', counterContent, likesNumber);
+            }
+            // console.log('3', counterContent, likesNumber);
+        }
+        counter.addEventListener("click", removeLike);
+
+        // counter.addEventListener("click", () => {
+        //     console.log(counterContent);
+        //     // if (!liked) {
+        //     //     liked = true;
+        //     counterContent += 1;
+        //     likesNumber += 1;
+        //     // } else {
+        //     //     liked = false;
+        //     //     counterContent -= 1;
+        //     //     likesNumber -= 1;
+        //     // }
+        // })
+    })
 }
 
 function getAriaModal() {
@@ -218,7 +269,6 @@ async function init() {
     displayData(photographers, media);
     selectCustomize();
     sidebarPriceLikes();
-    getTotalLikes();
     getAriaModal();
     getNameModal();
 }
