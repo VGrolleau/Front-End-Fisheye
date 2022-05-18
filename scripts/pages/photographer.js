@@ -84,69 +84,100 @@ function sidebarPriceLikes() {
     priceLikesSidebar.appendChild(priceDiv);
 }
 
-function updateLikes() {
-    const likesCount = document.querySelectorAll(".like-count span");
-    let liked = false;
-    // let likeMedia = false;
-    // console.log(likesCount);
+// function updateLikes() {
+//     const likesCount = document.querySelectorAll(".like-count span");
+//     // let likeMedia = false;
+//     // console.log(likesCount);
 
-    likesCount.forEach(counter => {
-        let counterContent = Number(counter.textContent);
-        const likeSpan = document.querySelector(".like-span");
+//     likesCount.forEach(counter => {
+//         let counterContent = Number(counter.textContent);
+//         const likeSpan = document.querySelector(".like-span");
+//         let liked = false;
 
-        // console.log(liked);
+//         // console.log(liked);
 
-        if (!liked) {
-            const addLike = function() {
-                // currentCounter = event.target;
-                // console.log(currentCounter.innerText);
-                console.log('1', counterContent, likesNumber);
-                counterContent += 1;
-                counter.innerText = counterContent;
-                likesNumber += 1;
-                likeSpan.textContent = likesNumber;
-                liked = true;
-                counter.removeEventListener('click', addLike);
-                console.log('2', counterContent, likesNumber);
-                // return (counterContent, likesNumber);
-                // console.log('3', counterContent, likesNumber);
-                console.log(liked);
-            }
-            counter.addEventListener("click", addLike);
-            console.log(liked);
-        }
+//         // if (!liked) {
+//         //     const addLike = function() {
+//         //         // currentCounter = event.target;
+//         //         // console.log(currentCounter.innerText);
+//         //         console.log('1', counterContent, likesNumber);
+//         //         counterContent += 1;
+//         //         counter.innerText = counterContent;
+//         //         likesNumber += 1;
+//         //         likeSpan.textContent = likesNumber;
+//         //         liked = true;
+//         //         counter.removeEventListener('click', addLike);
+//         //         console.log('2', counterContent, likesNumber);
+//         //         // return (counterContent, likesNumber);
+//         //         // console.log('3', counterContent, likesNumber);
+//         //         console.log(liked);
+//         //     }
+//         //     counter.addEventListener("click", addLike);
+//         //     console.log(liked);
+//         // }
 
-        if (liked) {
-            const removeLike = function() {
-                    console.log('1bis', counterContent, likesNumber);
-                    counterContent -= 1;
-                    counter.innerText = counterContent;
-                    likesNumber -= 1;
-                    likeSpan.textContent = likesNumber;
-                    counter.removeEventListener('click', removeLike);
-                    liked = false;
-                    console.log('2bis', counterContent, likesNumber);
-                }
-                // console.log('3', counterContent, likesNumber);
-            counter.addEventListener("click", removeLike);
-        }
+//         // if (liked) {
+//         //     const removeLike = function() {
+//         //             console.log('1bis', counterContent, likesNumber);
+//         //             counterContent -= 1;
+//         //             counter.innerText = counterContent;
+//         //             likesNumber -= 1;
+//         //             likeSpan.textContent = likesNumber;
+//         //             counter.removeEventListener('click', removeLike);
+//         //             liked = false;
+//         //             console.log('2bis', counterContent, likesNumber);
+//         //         }
+//         //         // console.log('3', counterContent, likesNumber);
+//         //     counter.addEventListener("click", removeLike);
+//         // }
 
-        // console.log(liked);
+//         const manageLike = function() {
+//             if (!liked) {
+//                 console.log('1', counterContent, likesNumber);
+//                 counterContent += 1;
+//                 counter.innerText = counterContent;
+//                 likesNumber += 1;
+//                 likeSpan.textContent = likesNumber;
+//                 liked = true;
+//                 // counter.removeEventListener('click', manageLike);
+//                 console.log('2', counterContent, likesNumber);
+//                 console.log(liked);
+//             } else {
+//                 // if (liked) {
+//                 console.log('1bis', counterContent, likesNumber);
+//                 counterContent -= 1;
+//                 counter.innerText = counterContent;
+//                 likesNumber -= 1;
+//                 likeSpan.textContent = likesNumber;
+//                 liked = false;
+//                 // counter.removeEventListener('click', manageLike);
+//                 console.log('2bis', counterContent, likesNumber);
+//                 console.log(liked);
+//             }
+//             counter.removeEventListener('click', manageLike);
+//             console.log(liked);
+//             // console.log('3', counterContent, likesNumber);
+//             return liked;
+//         }
+//         console.log(liked);
+//         counter.addEventListener("click", manageLike);
 
-        // counter.addEventListener("click", () => {
-        //     console.log(counterContent);
-        //     // if (!liked) {
-        //     //     liked = true;
-        //     counterContent += 1;
-        //     likesNumber += 1;
-        //     // } else {
-        //     //     liked = false;
-        //     //     counterContent -= 1;
-        //     //     likesNumber -= 1;
-        //     // }
-        // })
-    })
-}
+//         // console.log(liked);
+
+//         // counter.addEventListener("click", () => {
+//         //     console.log(counterContent);
+//         //     // if (!liked) {
+//         //     //     liked = true;
+//         //     counterContent += 1;
+//         //     likesNumber += 1;
+//         //     // } else {
+//         //     //     liked = false;
+//         //     //     counterContent -= 1;
+//         //     //     likesNumber -= 1;
+//         //     // }
+//         // })
+//     })
+// }
 
 function getAriaModal() {
     const modal = document.getElementById("contact_modal");
