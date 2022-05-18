@@ -40,9 +40,7 @@ function displayData(photographers, medias) {
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
             mediasPhotographer.push(mediaModel);
             currentMediaModel = mediaModel;
-            console.log(media.likes);
             likesNumber += media.likes;
-            console.log(likesNumber);
         }
     });
 
@@ -77,7 +75,7 @@ function sidebarPriceLikes() {
     const priceLikesSidebar = document.querySelector(".price-likes-sidebar");
 
     const likesDiv = document.createElement('div');
-    likesDiv.innerHTML += `${likesNumber} <i class="fa-solid fa-heart"></i>`;
+    likesDiv.innerHTML += `<span class="like-span">${likesNumber}</span> <i class="fa-solid fa-heart"></i>`;
 
     const priceDiv = document.createElement('div');
     priceDiv.innerText = pricePhotographer + "€ / jour";
@@ -86,10 +84,100 @@ function sidebarPriceLikes() {
     priceLikesSidebar.appendChild(priceDiv);
 }
 
-function getTotalLikes() {
-    console.log(likesNumber);
-    // const totalLikes = document.get
-}
+// function updateLikes() {
+//     const likesCount = document.querySelectorAll(".like-count span");
+//     // let likeMedia = false;
+//     // console.log(likesCount);
+
+//     likesCount.forEach(counter => {
+//         let counterContent = Number(counter.textContent);
+//         const likeSpan = document.querySelector(".like-span");
+//         let liked = false;
+
+//         // console.log(liked);
+
+//         // if (!liked) {
+//         //     const addLike = function() {
+//         //         // currentCounter = event.target;
+//         //         // console.log(currentCounter.innerText);
+//         //         console.log('1', counterContent, likesNumber);
+//         //         counterContent += 1;
+//         //         counter.innerText = counterContent;
+//         //         likesNumber += 1;
+//         //         likeSpan.textContent = likesNumber;
+//         //         liked = true;
+//         //         counter.removeEventListener('click', addLike);
+//         //         console.log('2', counterContent, likesNumber);
+//         //         // return (counterContent, likesNumber);
+//         //         // console.log('3', counterContent, likesNumber);
+//         //         console.log(liked);
+//         //     }
+//         //     counter.addEventListener("click", addLike);
+//         //     console.log(liked);
+//         // }
+
+//         // if (liked) {
+//         //     const removeLike = function() {
+//         //             console.log('1bis', counterContent, likesNumber);
+//         //             counterContent -= 1;
+//         //             counter.innerText = counterContent;
+//         //             likesNumber -= 1;
+//         //             likeSpan.textContent = likesNumber;
+//         //             counter.removeEventListener('click', removeLike);
+//         //             liked = false;
+//         //             console.log('2bis', counterContent, likesNumber);
+//         //         }
+//         //         // console.log('3', counterContent, likesNumber);
+//         //     counter.addEventListener("click", removeLike);
+//         // }
+
+//         const manageLike = function() {
+//             if (!liked) {
+//                 console.log('1', counterContent, likesNumber);
+//                 counterContent += 1;
+//                 counter.innerText = counterContent;
+//                 likesNumber += 1;
+//                 likeSpan.textContent = likesNumber;
+//                 liked = true;
+//                 // counter.removeEventListener('click', manageLike);
+//                 console.log('2', counterContent, likesNumber);
+//                 console.log(liked);
+//             } else {
+//                 // if (liked) {
+//                 console.log('1bis', counterContent, likesNumber);
+//                 counterContent -= 1;
+//                 counter.innerText = counterContent;
+//                 likesNumber -= 1;
+//                 likeSpan.textContent = likesNumber;
+//                 liked = false;
+//                 // counter.removeEventListener('click', manageLike);
+//                 console.log('2bis', counterContent, likesNumber);
+//                 console.log(liked);
+//             }
+//             counter.removeEventListener('click', manageLike);
+//             console.log(liked);
+//             // console.log('3', counterContent, likesNumber);
+//             return liked;
+//         }
+//         console.log(liked);
+//         counter.addEventListener("click", manageLike);
+
+//         // console.log(liked);
+
+//         // counter.addEventListener("click", () => {
+//         //     console.log(counterContent);
+//         //     // if (!liked) {
+//         //     //     liked = true;
+//         //     counterContent += 1;
+//         //     likesNumber += 1;
+//         //     // } else {
+//         //     //     liked = false;
+//         //     //     counterContent -= 1;
+//         //     //     likesNumber -= 1;
+//         //     // }
+//         // })
+//     })
+// }
 
 function getAriaModal() {
     const modal = document.getElementById("contact_modal");
@@ -133,6 +221,7 @@ function getLightboxImg(idMedia) {
     const nextButton = document.querySelector(".lightbox__next");
     const closeButton = document.querySelector(".lightbox__close");
     let indexMedia = 0;
+
     mediasPhotographer.forEach(mediaPhotographer => {
         if (mediaPhotographer.id === idMedia) {
             if ("video" in mediaPhotographer) {
@@ -218,7 +307,6 @@ async function init() {
     displayData(photographers, media);
     selectCustomize();
     sidebarPriceLikes();
-    getTotalLikes();
     getAriaModal();
     getNameModal();
 }

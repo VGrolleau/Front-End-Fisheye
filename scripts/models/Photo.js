@@ -7,12 +7,13 @@ class Photo {
         this.likes = data.likes;
         this.price = data.price;
         this.namePhotographer = namePhotographer;
+        this.liked = false;
     }
 
     getMediaCardDOM() {
         const cardMedia = document.createElement('article');
         cardMedia.classList.add('card-media');
-        cardMedia.id = this.id;
+        cardMedia.id = `card-${this.id}`;
 
         const aImg = document.createElement('a');
         aImg.setAttribute("href", "");
@@ -34,8 +35,10 @@ class Photo {
         pTitle.textContent = this.title;
 
         const likesCount = document.createElement('p');
-        likesCount.innerHTML += this.likes + " <i class=\"fa-solid fa-heart\"></i>";
+        likesCount.classList.add("like-count");
+        likesCount.innerHTML += `<span>${this.likes}</span> <i class="fa-solid fa-heart"></i>`;
         likesCount.setAttribute("aria-label", "Likes");
+        likesCount.addEventListener("click", () => { this.updateLikes() });
 
         titleLikesDiv.appendChild(pTitle);
         titleLikesDiv.appendChild(likesCount);
@@ -44,5 +47,22 @@ class Photo {
         cardMedia.appendChild(titleLikesDiv);
 
         return cardMedia;
+    }
+
+    updateLikes() {
+        const spanCurrentMedia = document.querySelector(`#card-${this.id} .like-count span`);
+        const likeSpan = document.querySelector(".like-span");
+
+        if (!this.liked) {
+            this.likes += 1;
+            spanCurrentMedia.innerText = this.likes;
+            likeSpan.textContent = Number(likeSpan.textContent) + 1;
+            this.liked = true;
+        } else {
+            this.likes -= 1;
+            spanCurrentMedia.innerText = this.likes;
+            likeSpan.textContent = Number(likeSpan.textContent) - 1;
+            this.liked = false;
+        }
     }
 }
