@@ -87,15 +87,17 @@ function sidebarPriceLikes() {
 function updateLikes() {
     const likesCount = document.querySelectorAll(".like-count span");
     let liked = false;
-    let likeMedia = false;
+    // let likeMedia = false;
     // console.log(likesCount);
 
     likesCount.forEach(counter => {
         let counterContent = Number(counter.textContent);
         const likeSpan = document.querySelector(".like-span");
 
-        const addLike = function() {
-            if (!liked) {
+        // console.log(liked);
+
+        if (!liked) {
+            const addLike = function() {
                 // currentCounter = event.target;
                 // console.log(currentCounter.innerText);
                 console.log('1', counterContent, likesNumber);
@@ -103,29 +105,33 @@ function updateLikes() {
                 counter.innerText = counterContent;
                 likesNumber += 1;
                 likeSpan.textContent = likesNumber;
-                counter.removeEventListener('click', addLike);
                 liked = true;
+                counter.removeEventListener('click', addLike);
                 console.log('2', counterContent, likesNumber);
                 // return (counterContent, likesNumber);
+                // console.log('3', counterContent, likesNumber);
+                console.log(liked);
             }
-            // console.log('3', counterContent, likesNumber);
+            counter.addEventListener("click", addLike);
+            console.log(liked);
         }
-        counter.addEventListener("click", addLike);
 
-        const removeLike = function() {
-            if (liked) {
-                console.log('1bis', counterContent, likesNumber);
-                counterContent -= 1;
-                counter.innerText = counterContent;
-                likesNumber -= 1;
-                likeSpan.textContent = likesNumber;
-                counter.removeEventListener('click', removeLike);
-                liked = false;
-                console.log('2bis', counterContent, likesNumber);
-            }
-            // console.log('3', counterContent, likesNumber);
+        if (liked) {
+            const removeLike = function() {
+                    console.log('1bis', counterContent, likesNumber);
+                    counterContent -= 1;
+                    counter.innerText = counterContent;
+                    likesNumber -= 1;
+                    likeSpan.textContent = likesNumber;
+                    counter.removeEventListener('click', removeLike);
+                    liked = false;
+                    console.log('2bis', counterContent, likesNumber);
+                }
+                // console.log('3', counterContent, likesNumber);
+            counter.addEventListener("click", removeLike);
         }
-        counter.addEventListener("click", removeLike);
+
+        // console.log(liked);
 
         // counter.addEventListener("click", () => {
         //     console.log(counterContent);
@@ -184,6 +190,7 @@ function getLightboxImg(idMedia) {
     const nextButton = document.querySelector(".lightbox__next");
     const closeButton = document.querySelector(".lightbox__close");
     let indexMedia = 0;
+
     mediasPhotographer.forEach(mediaPhotographer => {
         if (mediaPhotographer.id === idMedia) {
             if ("video" in mediaPhotographer) {
