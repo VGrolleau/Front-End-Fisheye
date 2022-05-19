@@ -4,10 +4,10 @@ let pricePhotographer = 0;
 let idPhotographer = 0;
 let namePhotographer = "";
 let mediasPhotographer = [];
-let previouslyFocused = null;
-const focusableSelectorsLightbox = 'button';
-let focusablesLightboxArray = [];
-let activLightbox = null;
+// let previouslyFocused = null;
+// const focusableSelectorsLightbox = 'button';
+// let focusablesLightboxArray = [];
+// let activLightbox = null;
 let likesNumber = 0;
 
 async function getPhotographers() {
@@ -48,6 +48,8 @@ function displayData(photographers, medias) {
     aImg.forEach(a => a.addEventListener("click", (event) => {
         event.preventDefault();
     }))
+
+
 }
 
 // Récupération de l'id dans l'URL
@@ -84,101 +86,6 @@ function sidebarPriceLikes() {
     priceLikesSidebar.appendChild(priceDiv);
 }
 
-// function updateLikes() {
-//     const likesCount = document.querySelectorAll(".like-count span");
-//     // let likeMedia = false;
-//     // console.log(likesCount);
-
-//     likesCount.forEach(counter => {
-//         let counterContent = Number(counter.textContent);
-//         const likeSpan = document.querySelector(".like-span");
-//         let liked = false;
-
-//         // console.log(liked);
-
-//         // if (!liked) {
-//         //     const addLike = function() {
-//         //         // currentCounter = event.target;
-//         //         // console.log(currentCounter.innerText);
-//         //         console.log('1', counterContent, likesNumber);
-//         //         counterContent += 1;
-//         //         counter.innerText = counterContent;
-//         //         likesNumber += 1;
-//         //         likeSpan.textContent = likesNumber;
-//         //         liked = true;
-//         //         counter.removeEventListener('click', addLike);
-//         //         console.log('2', counterContent, likesNumber);
-//         //         // return (counterContent, likesNumber);
-//         //         // console.log('3', counterContent, likesNumber);
-//         //         console.log(liked);
-//         //     }
-//         //     counter.addEventListener("click", addLike);
-//         //     console.log(liked);
-//         // }
-
-//         // if (liked) {
-//         //     const removeLike = function() {
-//         //             console.log('1bis', counterContent, likesNumber);
-//         //             counterContent -= 1;
-//         //             counter.innerText = counterContent;
-//         //             likesNumber -= 1;
-//         //             likeSpan.textContent = likesNumber;
-//         //             counter.removeEventListener('click', removeLike);
-//         //             liked = false;
-//         //             console.log('2bis', counterContent, likesNumber);
-//         //         }
-//         //         // console.log('3', counterContent, likesNumber);
-//         //     counter.addEventListener("click", removeLike);
-//         // }
-
-//         const manageLike = function() {
-//             if (!liked) {
-//                 console.log('1', counterContent, likesNumber);
-//                 counterContent += 1;
-//                 counter.innerText = counterContent;
-//                 likesNumber += 1;
-//                 likeSpan.textContent = likesNumber;
-//                 liked = true;
-//                 // counter.removeEventListener('click', manageLike);
-//                 console.log('2', counterContent, likesNumber);
-//                 console.log(liked);
-//             } else {
-//                 // if (liked) {
-//                 console.log('1bis', counterContent, likesNumber);
-//                 counterContent -= 1;
-//                 counter.innerText = counterContent;
-//                 likesNumber -= 1;
-//                 likeSpan.textContent = likesNumber;
-//                 liked = false;
-//                 // counter.removeEventListener('click', manageLike);
-//                 console.log('2bis', counterContent, likesNumber);
-//                 console.log(liked);
-//             }
-//             counter.removeEventListener('click', manageLike);
-//             console.log(liked);
-//             // console.log('3', counterContent, likesNumber);
-//             return liked;
-//         }
-//         console.log(liked);
-//         counter.addEventListener("click", manageLike);
-
-//         // console.log(liked);
-
-//         // counter.addEventListener("click", () => {
-//         //     console.log(counterContent);
-//         //     // if (!liked) {
-//         //     //     liked = true;
-//         //     counterContent += 1;
-//         //     likesNumber += 1;
-//         //     // } else {
-//         //     //     liked = false;
-//         //     //     counterContent -= 1;
-//         //     //     likesNumber -= 1;
-//         //     // }
-//         // })
-//     })
-// }
-
 function getAriaModal() {
     const modal = document.getElementById("contact_modal");
     modal.setAttribute("aria-labelledby", "Contact me " + namePhotographer);
@@ -189,117 +96,132 @@ function getNameModal() {
     modalNamePhotographer.innerText = namePhotographer;
 }
 
-function displayLightbox(idMedia) {
-    focusablesLightboxArray = Array.from(lightbox.querySelectorAll(focusableSelectorsLightbox));
-    previouslyFocused = document.querySelector(':focus');
-    focusablesLightboxArray[0].focus();
-    lightbox.style.display = "flex";
-    lightbox.removeAttribute("aria-hidden");
-    lightbox.setAttribute("aria-modal", "true");
-    document.body.style.overflow = "hidden";
+function displayLightbox(idMedia, titleMedia, type) {
+    const lightboxModel = new Lightbox(mediasPhotographer, namePhotographer);
+    lightboxModel.getLightbox(idMedia, titleMedia, type);
 
-    getLightboxImg(idMedia);
-    activLightbox = lightbox;
-}
+    lightbox.addEventListener("keydown", function(event) {
+        if (event.key === "Escape" || event.key === "Esc") {
+            lightbox.closeLightbox();
+        }
 
-function closeLightbox() {
-    if (activLightbox === null) return;
-    if (previouslyFocused !== null) previouslyFocused.focus();
-
-    lightbox.setAttribute("aria-hidden", "true");
-    lightbox.removeAttribute("aria-modal");
-    lightbox.querySelector('.lightbox__close').removeEventListener('click', closeLightbox);
-
-    lightbox.style.display = "none";
-    document.body.style.overflow = "auto";
-    activLightbox = null;
-}
-
-function getLightboxImg(idMedia) {
-    const lightboxImgContainer = document.querySelector(".lightbox__container");
-    const prevButton = document.querySelector(".lightbox__prev");
-    const nextButton = document.querySelector(".lightbox__next");
-    const closeButton = document.querySelector(".lightbox__close");
-    let indexMedia = 0;
-
-    mediasPhotographer.forEach(mediaPhotographer => {
-        if (mediaPhotographer.id === idMedia) {
-            if ("video" in mediaPhotographer) {
-                lightboxImgContainer.innerHTML = `<video controls="">
-                <source src="assets/${namePhotographer}/${mediaPhotographer.video}" type="video/mp4">
-                </video>`;
-            } else {
-                lightboxImgContainer.innerHTML = `<img src="assets/${namePhotographer}/${mediaPhotographer.image}" alt="${mediaPhotographer.title}">`;
-            }
-
-            const titleMedia = document.createElement('p');
-            titleMedia.innerText = mediaPhotographer.title;
-
-            lightboxImgContainer.appendChild(titleMedia);
-
-            indexMedia = mediasPhotographer.findIndex(element => element === mediaPhotographer);
-            console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
+        if (event.key === "Tab" && lightbox.activLightbox !== null) {
+            lightbox.focusInLightbox(event);
         }
     })
-
-    prevButton.addEventListener("click", function() {
-        console.log("clicked prev");
-        indexMedia--;
-        // console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
-        if (indexMedia < 0) {
-            indexMedia = mediasPhotographer.length - 1;
-        }
-        console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
-
-        getLightboxImg(mediasPhotographer[indexMedia].id);
-    })
-
-    nextButton.addEventListener("click", function() {
-        console.log("clicked next");
-        indexMedia++;
-        if (indexMedia >= mediasPhotographer.length) {
-            indexMedia = 0;
-        }
-        console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
-
-        getLightboxImg(mediasPhotographer[indexMedia].id);
-    })
-
-    closeButton.addEventListener("click", function() {
-        indexMedia = 0;
-    })
 }
 
-function focusInLightbox(event) {
-    event.preventDefault();
-    let indexFocusLightbox = focusablesLightboxArray.findIndex(element => element === activLightbox.querySelector(':focus'));
+// function displayLightbox(idMedia) {
+//     focusablesLightboxArray = Array.from(lightbox.querySelectorAll(focusableSelectorsLightbox));
+//     previouslyFocused = document.querySelector(':focus');
+//     focusablesLightboxArray[0].focus();
+//     lightbox.style.display = "flex";
+//     lightbox.removeAttribute("aria-hidden");
+//     lightbox.setAttribute("aria-modal", "true");
+//     document.body.style.overflow = "hidden";
 
-    if (event.shiftKey === true) {
-        indexFocusLightbox--;
-    } else {
-        indexFocusLightbox++;
-    }
+//     getLightboxImg(idMedia);
+//     activLightbox = lightbox;
+// }
 
-    if (indexFocusLightbox >= focusablesLightboxArray.length) {
-        indexFocusLightbox = 0;
-    }
+// function closeLightbox() {
+//     if (activLightbox === null) return;
+//     if (previouslyFocused !== null) previouslyFocused.focus();
 
-    if (indexFocusLightbox < 0) {
-        indexFocusLightbox = focusablesLightboxArray.length - 1;
-    }
+//     lightbox.setAttribute("aria-hidden", "true");
+//     lightbox.removeAttribute("aria-modal");
+//     lightbox.querySelector('.lightbox__close').removeEventListener('click', closeLightbox);
 
-    focusablesLightboxArray[indexFocusLightbox].focus();
-}
+//     lightbox.style.display = "none";
+//     document.body.style.overflow = "auto";
+//     activLightbox = null;
+// }
 
-lightbox.addEventListener("keydown", function(event) {
-    if (event.key === "Escape" || event.key === "Esc") {
-        closeLightbox();
-    }
+// function getLightboxImg(idMedia) {
+//     const lightboxImgContainer = document.querySelector(".lightbox__container");
+//     const prevButton = document.querySelector(".lightbox__prev");
+//     const nextButton = document.querySelector(".lightbox__next");
+//     const closeButton = document.querySelector(".lightbox__close");
+//     let indexMedia = 0;
 
-    if (event.key === "Tab" && activLightbox !== null) {
-        focusInLightbox(event);
-    }
-})
+//     mediasPhotographer.forEach(mediaPhotographer => {
+//         if (mediaPhotographer.id === idMedia) {
+//             if ("video" in mediaPhotographer) {
+//                 lightboxImgContainer.innerHTML = `<video controls="">
+//                 <source src="assets/${namePhotographer}/${mediaPhotographer.video}" type="video/mp4">
+//                 </video>`;
+//             } else {
+//                 lightboxImgContainer.innerHTML = `<img src="assets/${namePhotographer}/${mediaPhotographer.image}" alt="${mediaPhotographer.title}">`;
+//             }
+
+//             const titleMedia = document.createElement('p');
+//             titleMedia.innerText = mediaPhotographer.title;
+
+//             lightboxImgContainer.appendChild(titleMedia);
+
+//             indexMedia = mediasPhotographer.findIndex(element => element === mediaPhotographer);
+//             console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
+//         }
+//     })
+
+//     prevButton.addEventListener("click", function() {
+//         console.log("clicked prev");
+//         indexMedia--;
+//         // console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
+//         if (indexMedia < 0) {
+//             indexMedia = mediasPhotographer.length - 1;
+//         }
+//         console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
+
+//         getLightboxImg(mediasPhotographer[indexMedia].id);
+//     })
+
+//     nextButton.addEventListener("click", function() {
+//         console.log("clicked next");
+//         indexMedia++;
+//         if (indexMedia >= mediasPhotographer.length) {
+//             indexMedia = 0;
+//         }
+//         console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
+
+//         getLightboxImg(mediasPhotographer[indexMedia].id);
+//     })
+
+//     closeButton.addEventListener("click", function() {
+//         indexMedia = 0;
+//     })
+// }
+
+// function focusInLightbox(event) {
+//     event.preventDefault();
+//     let indexFocusLightbox = focusablesLightboxArray.findIndex(element => element === activLightbox.querySelector(':focus'));
+
+//     if (event.shiftKey === true) {
+//         indexFocusLightbox--;
+//     } else {
+//         indexFocusLightbox++;
+//     }
+
+//     if (indexFocusLightbox >= focusablesLightboxArray.length) {
+//         indexFocusLightbox = 0;
+//     }
+
+//     if (indexFocusLightbox < 0) {
+//         indexFocusLightbox = focusablesLightboxArray.length - 1;
+//     }
+
+//     focusablesLightboxArray[indexFocusLightbox].focus();
+// }
+
+// lightbox.addEventListener("keydown", function(event) {
+//     if (event.key === "Escape" || event.key === "Esc") {
+//         closeLightbox();
+//     }
+
+//     if (event.key === "Tab" && activLightbox !== null) {
+//         focusInLightbox(event);
+//     }
+// })
 
 async function init() {
     // Récupère les datas des photographes

@@ -17,13 +17,12 @@ class Photo {
 
         const aImg = document.createElement('a');
         aImg.setAttribute("href", "");
-        aImg.setAttribute("onclick", `displayLightbox(${this.id})`);
         aImg.classList.add("a-img");
+        aImg.addEventListener("click", () => { displayLightbox(this.image, this.title, "image") });
 
         const img = document.createElement('img');
         img.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.image);
         img.setAttribute("alt", this.title);
-        img.setAttribute("onclick", `displayLightbox(${this.id})`);
 
         aImg.appendChild(img);
 

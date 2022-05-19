@@ -17,7 +17,7 @@ class Video {
         cardMedia.innerHTML += `<i class="fa-solid fa-circle-play fa-4x play-img"></i>`;
 
         const video = document.createElement('video');
-        video.setAttribute("onclick", `displayLightbox(${this.id})`);
+        video.addEventListener("click", () => { displayLightbox(this.video, this.title, "video") });
 
         const sourceVideo = document.createElement('source');
         sourceVideo.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.video);
