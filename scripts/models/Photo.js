@@ -18,7 +18,7 @@ class Photo {
         const aImg = document.createElement('a');
         aImg.setAttribute("href", "");
         aImg.classList.add("a-img");
-        aImg.addEventListener("click", () => { displayLightbox(this.image, this.title, "image") });
+        aImg.addEventListener("click", () => { displayLightbox(this) });
 
         const img = document.createElement('img');
         img.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.image);
@@ -63,5 +63,9 @@ class Photo {
             likeSpan.textContent = Number(likeSpan.textContent) - 1;
             this.liked = false;
         }
+    }
+
+    getMediaLightboxCardDom() {
+        return `<img src="assets/${this.namePhotographer}/${this.image}" alt="${this.title}">`;
     }
 }

@@ -5,21 +5,22 @@ class Lightbox {
         this.focusableSelectorsLightbox = 'button';
         this.focusablesLightboxArray = [];
         this.activLightbox = null;
-        this.idMedia = mediasPhotographer.id;
-        this.image = mediasPhotographer.image;
-        this.video = mediasPhotographer.video;
-        this.photographerId = mediasPhotographer.photographerId;
-        this.title = mediasPhotographer.title;
+        this.medias = mediasPhotographer;
         this.namePhotographer = namePhotographer;
-        // this.mediasPhotographer = mediasPhotographer;
-        // this.photographers = photographers;
-        // this.namePhotographer = photographers.name;
-        // this.idPhotographer = photographers.id;
-        // console.log(mediasPhotographer);
-        // console.log(mediasPhotographer);
+        this.index = 0;
+        this.closeButton = document.querySelector(".lightbox__close");
+        this.closeButton.addEventListener("click", () => { this.closeLightbox() });
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" || event.key === "Esc") {
+                this.closeLightbox();
+            }
+            if (event.key === "Tab" && this.activLightbox !== null) {
+                this.focusInLightbox(event);
+            }
+        })
     }
 
-    getLightbox(idMedia, titleMedia, type) {
+    getLightbox(media) {
         // const lightbox = document.querySelector('.lightbox');
         // let previouslyFocused = null;
         // const focusableSelectorsLightbox = 'button';
@@ -33,43 +34,52 @@ class Lightbox {
         this.lightbox.setAttribute("aria-modal", "true");
         document.body.style.overflow = "hidden";
 
-        this.getLightboxImg(idMedia, titleMedia, type);
+        // Mettre à jour this.index avec index du media dans le tableau mediasPhotographer
+
+
         this.activLightbox = this.lightbox;
+        this.getLightboxImg(this.activLightbox, this.previouslyFocused, this.lightbox, media);
+
+        // console.log(this.previouslyFocused);
+
     }
 
     closeLightbox() {
-        if (this.activLightbox === null) return;
+        // console.log(activLightbox, previouslyFocused, lightbox);
+        // if (activLightbox === null) return;
         if (this.previouslyFocused !== null) this.previouslyFocused.focus();
 
         this.lightbox.setAttribute("aria-hidden", "true");
         this.lightbox.removeAttribute("aria-modal");
-        this.lightbox.querySelector('.lightbox__close').removeEventListener('click', this.closeLightbox);
+        this.closeButton.removeEventListener('click', () => { this.closeLightbox() });
 
         this.lightbox.style.display = "none";
         document.body.style.overflow = "auto";
-        this.activLightbox = null;
+        // activLightbox = null;
     }
 
-    getLightboxImg(idMedia, titleMedia, type) {
+    getLightboxImg(activLightbox, previouslyFocused, lightbox, media) {
         const lightboxImgContainer = document.querySelector(".lightbox__container");
         const prevButton = document.querySelector(".lightbox__prev");
         const nextButton = document.querySelector(".lightbox__next");
-        const closeButton = document.querySelector(".lightbox__close");
+        // const closeButton = document.querySelector(".lightbox__close");
         let indexMedia = 0;
 
         // this.mediasPhotographer.forEach(mediaPhotographer => {
         //     if (mediaPhotographer.id === idMedia) {
         // if ("video" in mediaPhotographer) {
-        if (type === "video") {
-            lightboxImgContainer.innerHTML = `<video controls="">
-                <source src="assets/${this.namePhotographer}/${idMedia}" type="video/mp4">
-                </video>`;
-        } else {
-            lightboxImgContainer.innerHTML = `<img src="assets/${this.namePhotographer}/${idMedia}" alt="${titleMedia}">`;
-        }
+        // if (type === "video") {
+        //     lightboxImgContainer.innerHTML = `<video controls="">
+        //         <source src="assets/${this.namePhotographer}/${idMedia}" type="video/mp4">
+        //         </video>`;
+        // } else {
+        //     lightboxImgContainer.innerHTML = `<img src="assets/${this.namePhotographer}/${idMedia}" alt="${titleMedia}">`;
+        // }
+
+        lightboxImgContainer.innerHTML = media.getMediaLightboxCardDom();
 
         const titleMediaP = document.createElement('p');
-        titleMediaP.innerText = titleMedia;
+        titleMediaP.innerText = media.title;
 
         lightboxImgContainer.appendChild(titleMediaP);
 
@@ -78,33 +88,36 @@ class Lightbox {
         //     }
         // })
 
-        prevButton.addEventListener("click", function() {
-            console.log("clicked prev");
-            indexMedia--;
-            // console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
-            if (indexMedia < 0) {
-                indexMedia = this.mediasPhotographer.length - 1;
-            }
-            console.log(`index n° ${indexMedia} :`, this.mediasPhotographer[indexMedia]);
+        // if (this.lightbox.style.display === "flex") {
+        // prevButton.addEventListener("click", function() {
+        //     console.log("clicked prev");
+        //     indexMedia--;
+        //     // console.log(`index n° ${indexMedia} :`, mediasPhotographer[indexMedia]);
+        //     if (indexMedia < 0) {
+        //         indexMedia = this.mediasPhotographer.length - 1;
+        //     }
+        //     console.log(`index n° ${indexMedia} :`, this.mediasPhotographer[indexMedia]);
 
-            this.getLightboxImg(this.mediasPhotographer[indexMedia].id);
-        })
+        //     this.getLightboxImg(this.mediasPhotographer[indexMedia].id);
+        // })
 
-        nextButton.addEventListener("click", function() {
-            console.log("clicked next");
-            indexMedia++;
-            if (indexMedia >= this.mediasPhotographer.length) {
-                indexMedia = 0;
-            }
-            console.log(`index n° ${indexMedia} :`, this.mediasPhotographer[indexMedia]);
+        // nextButton.addEventListener("click", function() {
+        //     console.log("clicked next");
+        //     indexMedia++;
+        //     if (indexMedia >= this.mediasPhotographer.length) {
+        //         indexMedia = 0;
+        //     }
+        //     console.log(`index n° ${indexMedia} :`, this.mediasPhotographer[indexMedia]);
 
-            this.getLightboxImg(this.mediasPhotographer[indexMedia].id);
-        })
+        //     this.getLightboxImg(this.mediasPhotographer[indexMedia].id);
+        // })
 
-        closeButton.addEventListener("click", function() {
-            indexMedia = 0;
-            this.closeButton();
-        })
+        // closeButton.addEventListener("click", function() {
+        //     indexMedia = 0;
+        // });
+        // closeButton.addEventListener("click", this.closeLightbox(activLightbox, previouslyFocused, lightbox));
+        // console.log(activLightbox, previouslyFocused, lightbox);
+        // }
     }
 
     focusInLightbox(event) {

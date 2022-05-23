@@ -48,8 +48,6 @@ function displayData(photographers, medias) {
     aImg.forEach(a => a.addEventListener("click", (event) => {
         event.preventDefault();
     }))
-
-
 }
 
 // Récupération de l'id dans l'URL
@@ -96,20 +94,27 @@ function getNameModal() {
     modalNamePhotographer.innerText = namePhotographer;
 }
 
-function displayLightbox(idMedia, titleMedia, type) {
+function displayLightbox(media) {
     const lightboxModel = new Lightbox(mediasPhotographer, namePhotographer);
-    lightboxModel.getLightbox(idMedia, titleMedia, type);
+    lightboxModel.getLightbox(media);
 
-    lightbox.addEventListener("keydown", function(event) {
-        if (event.key === "Escape" || event.key === "Esc") {
-            lightbox.closeLightbox();
-        }
+    // lightbox.addEventListener("keydown", function(event) {
+    //     if (event.key === "Escape" || event.key === "Esc") {
+    //         lightboxModel.closeLightbox();
+    //     }
 
-        if (event.key === "Tab" && lightbox.activLightbox !== null) {
-            lightbox.focusInLightbox(event);
-        }
-    })
+    //     if (event.key === "Tab" && lightboxModel.activLightbox !== null) {
+    //         lightboxModel.focusInLightbox(event);
+    //     }
+    // })
+
+    // const closeButton = document.querySelector(".lightbox__close");
+    // closeButton.addEventListener("click", closeLightboxBtn(lightboxModel));
 }
+
+// function closeLightboxBtn(model) {
+//     model.closeLightbox();
+// }
 
 // function displayLightbox(idMedia) {
 //     focusablesLightboxArray = Array.from(lightbox.querySelectorAll(focusableSelectorsLightbox));
