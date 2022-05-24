@@ -7,9 +7,10 @@ class Lightbox {
         this.activLightbox = null;
         this.medias = mediasPhotographer;
         this.namePhotographer = namePhotographer;
-        this.index = 0;
+        this.indexMedia = 0;
         this.closeButton = document.querySelector(".lightbox__close");
         this.closeButton.addEventListener("click", () => { this.closeLightbox() });
+
         window.addEventListener("keydown", (event) => {
             if (event.key === "Escape" || event.key === "Esc") {
                 this.closeLightbox();
@@ -18,6 +19,25 @@ class Lightbox {
                 this.focusInLightbox(event);
             }
         })
+
+        this.prevButton = document.querySelector(".lightbox__prev");
+        this.prevButton.addEventListener("click", () => { this.prevMedia() });
+
+        this.nextButton = document.querySelector(".lightbox__next");
+        this.nextButton.addEventListener("click", function() {
+            console.log("clicked next");
+            indexMedia++;
+            if (indexMedia >= this.mediasPhotographer.length) {
+                indexMedia = 0;
+            }
+            console.log(`index n° ${indexMedia} :`, this.mediasPhotographer[indexMedia]);
+
+            this.getLightboxImg(this.mediasPhotographer[indexMedia].id);
+        })
+
+        this.closeButton.addEventListener("click", function() {
+            indexMedia = 0;
+        });
     }
 
     getLightbox(media) {
@@ -35,13 +55,12 @@ class Lightbox {
         document.body.style.overflow = "hidden";
 
         // Mettre à jour this.index avec index du media dans le tableau mediasPhotographer
-
+        console.log(this.medias, media);
+        this.indexMedia = this.medias.findIndex(element => element === media);
+        console.log(this.indexMedia);
 
         this.activLightbox = this.lightbox;
-        this.getLightboxImg(this.activLightbox, this.previouslyFocused, this.lightbox, media);
-
-        // console.log(this.previouslyFocused);
-
+        this.getLightboxImg(media);
     }
 
     closeLightbox() {
@@ -58,12 +77,12 @@ class Lightbox {
         // activLightbox = null;
     }
 
-    getLightboxImg(activLightbox, previouslyFocused, lightbox, media) {
+    getLightboxImg(media) {
         const lightboxImgContainer = document.querySelector(".lightbox__container");
-        const prevButton = document.querySelector(".lightbox__prev");
-        const nextButton = document.querySelector(".lightbox__next");
+        // const prevButton = document.querySelector(".lightbox__prev");
+        // const nextButton = document.querySelector(".lightbox__next");
         // const closeButton = document.querySelector(".lightbox__close");
-        let indexMedia = 0;
+        // let indexMedia = 0;
 
         // this.mediasPhotographer.forEach(mediaPhotographer => {
         //     if (mediaPhotographer.id === idMedia) {
@@ -118,6 +137,17 @@ class Lightbox {
         // closeButton.addEventListener("click", this.closeLightbox(activLightbox, previouslyFocused, lightbox));
         // console.log(activLightbox, previouslyFocused, lightbox);
         // }
+    }
+
+    prevMedia() {
+        console.log("clicked prev");
+        this.indexMedia--;
+        if (this.indexMedia < 0) {
+            this.indexMedia = this.medias.length - 1;
+        }
+        console.log(`index n° ${this.indexMedia} :`, this.medias[this.indexMedia]);
+
+        this.getLightboxImg(this.medias[this.indexMedia]);
     }
 
     focusInLightbox(event) {
