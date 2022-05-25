@@ -96,7 +96,8 @@ function getNameModal() {
 
 function displayLightbox(media) {
     const lightboxModel = new Lightbox(mediasPhotographer, namePhotographer);
-    lightboxModel.getLightbox(media);
+    lightboxModel.getLightbox(media, lightboxModel);
+    lightboxModel.open = false;
 
     // lightbox.addEventListener("keydown", function(event) {
     //     if (event.key === "Escape" || event.key === "Esc") {
