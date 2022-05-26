@@ -9,6 +9,8 @@ class Lightbox {
         this.namePhotographer = namePhotographer;
         this.indexMedia = 0;
 
+        Lightbox.open = this.openFalse;
+
         if (!Lightbox.open) {
             this.closeButton = document.querySelector(".lightbox__close");
             this.closeButton.addEventListener("click", () => { this.closeLightbox() });
@@ -29,6 +31,10 @@ class Lightbox {
             this.nextButton.addEventListener("click", () => { this.nextMedia() });
         }
         Lightbox.open = true;
+    }
+
+    static openFalse() {
+        return Lightbox.open = false
     }
 
     getLightbox(media, lightboxModel) {
