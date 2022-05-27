@@ -6,6 +6,7 @@ class Video {
         this.video = data.video;
         this.likes = data.likes;
         this.price = data.price;
+        this.date = data.date;
         this.namePhotographer = namePhotographer;
         this.liked = false;
     }

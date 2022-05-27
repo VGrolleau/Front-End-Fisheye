@@ -6,6 +6,7 @@ class Photo {
         this.image = data.image;
         this.likes = data.likes;
         this.price = data.price;
+        this.date = data.date;
         this.namePhotographer = namePhotographer;
         this.liked = false;
     }

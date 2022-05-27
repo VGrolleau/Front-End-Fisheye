@@ -59,11 +59,55 @@ function selectCustomize() {
     const orderByBtn = document.querySelector(".order-by-btn span");
     const ordersByLi = document.querySelectorAll(".order-by-li");
 
+    // console.log(mediasPhotographer);
+
     ordersByLi.forEach((orderByLi) =>
         orderByLi.addEventListener('click', () => {
-            orderByBtn.textContent = orderByLi.textContent
+            orderByBtn.textContent = orderByLi.textContent;
+            if (orderByLi.textContent === "Popularité") {
+                orderByPopularity();
+            }
+            if (orderByLi.textContent === "Date") {
+                orderByDate();
+            }
+            if (orderByLi.textContent === "Titre") {
+                orderByTitle();
+            }
         })
     );
+}
+
+function orderByPopularity() {
+    console.log("order by popularity");
+    mediasPhotographer.sort(function(a, b) {
+        return a.likes - b.likes;
+    });
+
+    for (let i = 0; i < mediasPhotographer.length; i++) {
+        console.log(mediasPhotographer[i].likes);
+    }
+}
+
+function orderByDate() {
+    console.log("order by date");
+    mediasPhotographer.sort(function(a, b) {
+        return new Date(a.date) - new Date(b.date);
+    });
+
+    for (let i = 0; i < mediasPhotographer.length; i++) {
+        console.log(mediasPhotographer[i].date);
+    }
+}
+
+function orderByTitle() {
+    console.log("order by title");
+    mediasPhotographer.sort(function(a, b) {
+        return a.title.localeCompare(b.title);
+    });
+
+    for (let i = 0; i < mediasPhotographer.length; i++) {
+        console.log(mediasPhotographer[i].title);
+    }
 }
 
 function sidebarPriceLikes() {
