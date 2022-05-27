@@ -92,7 +92,6 @@ function getNameModal() {
 function displayLightbox(media) {
     const lightboxModel = new Lightbox(mediasPhotographer, namePhotographer);
     lightboxModel.getLightbox(media);
-    lightboxModel.open = false;
 }
 
 async function init() {
