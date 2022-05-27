@@ -1,7 +1,14 @@
 /* eslint-disable no-undef */
+const photographerInfo = document.querySelector(".photographer-info");
+const photographerImg = document.querySelector(".photographer_img");
+const photographersSection = document.querySelector(".photographer_section");
+const urlId = Number(getUrlId());
+let photographerModel;
+let mediaModel;
 let pricePhotographer = 0;
 let idPhotographer = 0;
 let namePhotographer = "";
+let arrayPhotographers = [];
 let mediasPhotographer = [];
 let likesNumber = 0;
 
@@ -12,14 +19,11 @@ async function getPhotographers() {
 }
 
 function displayData(photographers, medias) {
-    const photographerInfo = document.querySelector(".photographer-info");
-    const photographerImg = document.querySelector(".photographer_img");
-    const photographersSection = document.querySelector(".photographer_section");
-    const urlId = Number(getUrlId());
+    arrayPhotographers = photographers;
 
     photographers.forEach(photographer => {
         if (urlId === photographer.id) {
-            const photographerModel = new PhotographerFactory(photographer);
+            photographerModel = new PhotographerFactory(photographer);
             photographerModel.getUserInfo(photographerInfo);
             photographerImg.appendChild(photographerModel.getUserImg());
             idPhotographer = photographer.id;
@@ -31,7 +35,7 @@ function displayData(photographers, medias) {
 
     medias.forEach(media => {
         if (urlId === media.photographerId) {
-            const mediaModel = new MediaFactory(media, namePhotographer);
+            mediaModel = new MediaFactory(media, namePhotographer);
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
             mediasPhotographer.push(mediaModel);
             currentMediaModel = mediaModel;
@@ -78,36 +82,54 @@ function selectCustomize() {
 }
 
 function orderByPopularity() {
+    photographerInfo.innerHTML = "";
+    photographerImg.innerHTML = "";
+    photographersSection.innerHTML = "";
+
     console.log("order by popularity");
     mediasPhotographer.sort(function(a, b) {
         return a.likes - b.likes;
     });
 
-    for (let i = 0; i < mediasPhotographer.length; i++) {
-        console.log(mediasPhotographer[i].likes);
-    }
+    // for (let i = 0; i < mediasPhotographer.length; i++) {
+    //     console.log(mediasPhotographer[i]);
+    // }
+
+    displayData(arrayPhotographers, mediasPhotographer);
 }
 
 function orderByDate() {
+    photographerInfo.innerHTML = "";
+    photographerImg.innerHTML = "";
+    photographersSection.innerHTML = "";
+
     console.log("order by date");
     mediasPhotographer.sort(function(a, b) {
         return new Date(a.date) - new Date(b.date);
     });
 
-    for (let i = 0; i < mediasPhotographer.length; i++) {
-        console.log(mediasPhotographer[i].date);
-    }
+    // for (let i = 0; i < mediasPhotographer.length; i++) {
+    //     console.log(mediasPhotographer[i]);
+    // }
+
+    displayData(arrayPhotographers, mediasPhotographer);
 }
 
 function orderByTitle() {
+    photographerInfo.innerHTML = "";
+    photographerImg.innerHTML = "";
+    photographersSection.innerHTML = "";
+
     console.log("order by title");
     mediasPhotographer.sort(function(a, b) {
         return a.title.localeCompare(b.title);
     });
 
-    for (let i = 0; i < mediasPhotographer.length; i++) {
-        console.log(mediasPhotographer[i].title);
-    }
+    // for (let i = 0; i < mediasPhotographer.length; i++) {
+    //     console.log(mediasPhotographer[i]);
+    // }
+
+    displayData(arrayPhotographers, mediasPhotographer);
 }
 
 function sidebarPriceLikes() {
