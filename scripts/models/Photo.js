@@ -17,13 +17,12 @@ class Photo {
 
         const aImg = document.createElement('a');
         aImg.setAttribute("href", "");
-        aImg.setAttribute("onclick", `displayLightbox(${this.id})`);
         aImg.classList.add("a-img");
+        aImg.addEventListener("click", () => { displayLightbox(this) });
 
         const img = document.createElement('img');
         img.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.image);
         img.setAttribute("alt", this.title);
-        img.setAttribute("onclick", `displayLightbox(${this.id})`);
 
         aImg.appendChild(img);
 
@@ -64,5 +63,9 @@ class Photo {
             likeSpan.textContent = Number(likeSpan.textContent) - 1;
             this.liked = false;
         }
+    }
+
+    getMediaLightboxCardDom() {
+        return `<img src="assets/${this.namePhotographer}/${this.image}" alt="${this.title}">`;
     }
 }

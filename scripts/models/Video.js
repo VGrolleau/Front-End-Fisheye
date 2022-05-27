@@ -17,7 +17,7 @@ class Video {
         cardMedia.innerHTML += `<i class="fa-solid fa-circle-play fa-4x play-img"></i>`;
 
         const video = document.createElement('video');
-        video.setAttribute("onclick", `displayLightbox(${this.id})`);
+        video.addEventListener("click", () => { displayLightbox(this) });
 
         const sourceVideo = document.createElement('source');
         sourceVideo.setAttribute("src", 'assets/' + this.namePhotographer + '/' + this.video);
@@ -62,5 +62,11 @@ class Video {
             likeSpan.textContent = Number(likeSpan.textContent) - 1;
             this.liked = false;
         }
+    }
+
+    getMediaLightboxCardDom() {
+        return `<video controls="">
+        <source src="assets/${this.namePhotographer}/${this.video}" type="video/mp4">
+        </video>`;
     }
 }
