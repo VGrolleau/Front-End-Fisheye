@@ -1,4 +1,6 @@
 class Lightbox {
+    static open = false;
+
     constructor(mediasPhotographer, namePhotographer) {
         this.lightbox = document.querySelector('.lightbox');
         this.previouslyFocused = null;
@@ -7,23 +9,22 @@ class Lightbox {
         this.activLightbox = null;
         this.medias = mediasPhotographer;
         this.namePhotographer = namePhotographer;
-        this.indexMedia = 0;
+        this.indexMedia = null;
 
-        Lightbox.open = this.openFalse;
+        // Lightbox.open = this.openFalse;
+        this.closeButton = document.querySelector(".lightbox__close");
+        this.closeButton.addEventListener("click", () => { this.closeLightbox() });
+
+        window.addEventListener("keydown", (event) => {
+            if (event.key === "Escape" || event.key === "Esc") {
+                this.closeLightbox();
+            }
+            if (event.key === "Tab" && this.activLightbox !== null) {
+                this.focusInLightbox(event);
+            }
+        })
 
         if (!Lightbox.open) {
-            this.closeButton = document.querySelector(".lightbox__close");
-            this.closeButton.addEventListener("click", () => { this.closeLightbox() });
-
-            window.addEventListener("keydown", (event) => {
-                if (event.key === "Escape" || event.key === "Esc") {
-                    this.closeLightbox();
-                }
-                if (event.key === "Tab" && this.activLightbox !== null) {
-                    this.focusInLightbox(event);
-                }
-            })
-
             this.prevButton = document.querySelector(".lightbox__prev");
             this.prevButton.addEventListener("click", () => { this.prevMedia() });
 
@@ -33,11 +34,11 @@ class Lightbox {
         Lightbox.open = true;
     }
 
-    static openFalse() {
-        return Lightbox.open = false
-    }
+    // static openFalse() {
+    //     Lightbox.open = false
+    // }
 
-    getLightbox(media, lightboxModel) {
+    getLightbox(media) {
         this.focusablesLightboxArray = Array.from(this.lightbox.querySelectorAll(this.focusableSelectorsLightbox));
         this.previouslyFocused = document.querySelector(':focus');
         this.focusablesLightboxArray[0].focus();
@@ -56,13 +57,12 @@ class Lightbox {
 
         this.activLightbox = this.lightbox;
         this.getLightboxImg(media);
-        console.log(lightboxModel);
     }
 
     closeLightbox() {
         if (this.activLightbox === null) return;
 
-        this.indexMedia = 0;
+        this.indexMedia = null;
         console.log('indexMedia close :', this.indexMedia);
         if (this.previouslyFocused !== null) this.previouslyFocused.focus();
 
@@ -88,7 +88,7 @@ class Lightbox {
     }
 
     prevMedia() {
-        console.log("clicked prev");
+        console.log("clicked prev", this.indexMedia);
         this.indexMedia--;
         if (this.indexMedia < 0) {
             this.indexMedia = this.medias.length - 1;
