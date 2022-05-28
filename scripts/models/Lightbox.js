@@ -48,7 +48,6 @@ class Lightbox {
                 Lightbox.indexMedia = i;
             }
         }
-        console.log(Lightbox.indexMedia);
 
         this.activLightbox = this.lightbox;
         this.getLightboxImg(media);
@@ -58,7 +57,6 @@ class Lightbox {
         if (this.activLightbox === null) return;
 
         Lightbox.indexMedia = null;
-        console.log('indexMedia close :', Lightbox.indexMedia);
         if (this.previouslyFocused !== null) this.previouslyFocused.focus();
 
         this.lightbox.setAttribute("aria-hidden", "true");
@@ -82,23 +80,19 @@ class Lightbox {
     }
 
     prevMedia() {
-        console.log("clicked prev", Lightbox.indexMedia);
         Lightbox.indexMedia--;
         if (Lightbox.indexMedia < 0) {
             Lightbox.indexMedia = this.medias.length - 1;
         }
-        console.log(`index n° ${Lightbox.indexMedia} :`, this.medias[Lightbox.indexMedia]);
 
         this.getLightboxImg(this.medias[Lightbox.indexMedia]);
     }
 
     nextMedia() {
-        console.log("clicked next");
         Lightbox.indexMedia++;
         if (Lightbox.indexMedia >= this.medias.length) {
             Lightbox.indexMedia = 0;
         }
-        console.log(`index n° ${Lightbox.indexMedia} :`, this.medias[Lightbox.indexMedia]);
 
         this.getLightboxImg(this.medias[Lightbox.indexMedia]);
     }

@@ -1,7 +1,14 @@
 /* eslint-disable no-undef */
+const photographerInfo = document.querySelector(".photographer-info");
+const photographerImg = document.querySelector(".photographer_img");
+const photographersSection = document.querySelector(".photographer_section");
+const urlId = Number(getUrlId());
+let photographerModel;
+let mediaModel;
 let pricePhotographer = 0;
 let idPhotographer = 0;
 let namePhotographer = "";
+let arrayPhotographers = [];
 let mediasPhotographer = [];
 let likesNumber = 0;
 
@@ -12,14 +19,12 @@ async function getPhotographers() {
 }
 
 function displayData(photographers, medias) {
-    const photographerInfo = document.querySelector(".photographer-info");
-    const photographerImg = document.querySelector(".photographer_img");
-    const photographersSection = document.querySelector(".photographer_section");
-    const urlId = Number(getUrlId());
+    console.log(medias);
+    arrayPhotographers = photographers;
 
     photographers.forEach(photographer => {
         if (urlId === photographer.id) {
-            const photographerModel = new PhotographerFactory(photographer);
+            photographerModel = new PhotographerFactory(photographer);
             photographerModel.getUserInfo(photographerInfo);
             photographerImg.appendChild(photographerModel.getUserImg());
             idPhotographer = photographer.id;
@@ -31,7 +36,7 @@ function displayData(photographers, medias) {
 
     medias.forEach(media => {
         if (urlId === media.photographerId) {
-            const mediaModel = new MediaFactory(media, namePhotographer);
+            mediaModel = new MediaFactory(media, namePhotographer);
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
             mediasPhotographer.push(mediaModel);
             currentMediaModel = mediaModel;
@@ -59,11 +64,79 @@ function selectCustomize() {
     const orderByBtn = document.querySelector(".order-by-btn span");
     const ordersByLi = document.querySelectorAll(".order-by-li");
 
+    // console.log(mediasPhotographer);
+
     ordersByLi.forEach((orderByLi) =>
         orderByLi.addEventListener('click', () => {
-            orderByBtn.textContent = orderByLi.textContent
+            orderByBtn.textContent = orderByLi.textContent;
+            if (orderByLi.textContent === "Popularité") {
+                orderByPopularity();
+            }
+            if (orderByLi.textContent === "Date") {
+                orderByDate();
+            }
+            if (orderByLi.textContent === "Titre") {
+                orderByTitle();
+            }
         })
     );
+}
+
+function orderByPopularity() {
+    photographerInfo.innerHTML = "";
+    photographerImg.innerHTML = "";
+    photographersSection.innerHTML = "";
+
+    console.log("order by popularity");
+    mediasPhotographer.sort(function(a, b) {
+        return a.likes - b.likes;
+    });
+
+    jsonObject = mediasPhotographer.map(JSON.stringify);
+    uniqueSet = new Set(jsonObject);
+    filteredPopularityMedias = Array.from(uniqueSet).map(JSON.parse);
+
+    displayData(arrayPhotographers, filteredPopularityMedias);
+
+    console.log(mediasPhotographer, filteredPopularityMedias);
+}
+
+function orderByDate() {
+    photographerInfo.innerHTML = "";
+    photographerImg.innerHTML = "";
+    photographersSection.innerHTML = "";
+
+    console.log("order by date");
+    mediasPhotographer.sort(function(a, b) {
+        return new Date(a.date) - new Date(b.date);
+    });
+
+    jsonObject = mediasPhotographer.map(JSON.stringify);
+    uniqueSet = new Set(jsonObject);
+    filteredDateMedias = Array.from(uniqueSet).map(JSON.parse);
+
+    displayData(arrayPhotographers, filteredDateMedias);
+
+    console.log(mediasPhotographer, filteredDateMedias);
+}
+
+function orderByTitle() {
+    photographerInfo.innerHTML = "";
+    photographerImg.innerHTML = "";
+    photographersSection.innerHTML = "";
+
+    console.log("order by title");
+    mediasPhotographer.sort(function(a, b) {
+        return a.title.localeCompare(b.title);
+    });
+
+    jsonObject = mediasPhotographer.map(JSON.stringify);
+    uniqueSet = new Set(jsonObject);
+    filteredTitleMedias = Array.from(uniqueSet).map(JSON.parse);
+
+    displayData(arrayPhotographers, filteredTitleMedias);
+
+    console.log(mediasPhotographer, filteredTitleMedias);
 }
 
 function sidebarPriceLikes() {
