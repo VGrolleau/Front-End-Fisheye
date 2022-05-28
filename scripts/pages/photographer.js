@@ -19,6 +19,7 @@ async function getPhotographers() {
 }
 
 function displayData(photographers, medias) {
+    console.log(medias);
     arrayPhotographers = photographers;
 
     photographers.forEach(photographer => {
@@ -91,11 +92,13 @@ function orderByPopularity() {
         return a.likes - b.likes;
     });
 
-    // for (let i = 0; i < mediasPhotographer.length; i++) {
-    //     console.log(mediasPhotographer[i]);
-    // }
+    jsonObject = mediasPhotographer.map(JSON.stringify);
+    uniqueSet = new Set(jsonObject);
+    filteredPopularityMedias = Array.from(uniqueSet).map(JSON.parse);
 
-    displayData(arrayPhotographers, mediasPhotographer);
+    displayData(arrayPhotographers, filteredPopularityMedias);
+
+    console.log(mediasPhotographer, filteredPopularityMedias);
 }
 
 function orderByDate() {
@@ -108,11 +111,13 @@ function orderByDate() {
         return new Date(a.date) - new Date(b.date);
     });
 
-    // for (let i = 0; i < mediasPhotographer.length; i++) {
-    //     console.log(mediasPhotographer[i]);
-    // }
+    jsonObject = mediasPhotographer.map(JSON.stringify);
+    uniqueSet = new Set(jsonObject);
+    filteredDateMedias = Array.from(uniqueSet).map(JSON.parse);
 
-    displayData(arrayPhotographers, mediasPhotographer);
+    displayData(arrayPhotographers, filteredDateMedias);
+
+    console.log(mediasPhotographer, filteredDateMedias);
 }
 
 function orderByTitle() {
@@ -125,11 +130,13 @@ function orderByTitle() {
         return a.title.localeCompare(b.title);
     });
 
-    // for (let i = 0; i < mediasPhotographer.length; i++) {
-    //     console.log(mediasPhotographer[i]);
-    // }
+    jsonObject = mediasPhotographer.map(JSON.stringify);
+    uniqueSet = new Set(jsonObject);
+    filteredTitleMedias = Array.from(uniqueSet).map(JSON.parse);
 
-    displayData(arrayPhotographers, mediasPhotographer);
+    displayData(arrayPhotographers, filteredTitleMedias);
+
+    console.log(mediasPhotographer, filteredTitleMedias);
 }
 
 function sidebarPriceLikes() {
