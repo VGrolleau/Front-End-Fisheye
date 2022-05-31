@@ -56,7 +56,7 @@
             <header>
                 <h2>Contactez-moi<br><span class="modal-name-photographer"></span></h2>
                 <button class="modal-close" onclick="closeModal()" aria-label="Close contact form">
-                    <img src="assets/icons/close.svg" />
+                    <img src="assets/icons/close.svg" alt="Close contact form cross" />
                 </button>
             </header>
             <form name="contactForm">
@@ -85,14 +85,10 @@
     </div>
 
     <div class="lightbox" aria-hidden="true" role="dialog">
-        <!-- <button class="lightbox__close" onclick="closeLightboxBtn()"><i class="fa-solid fa-xmark fa-3x"></i></button> -->
-        <button class="lightbox__close"><i class="fa-solid fa-xmark fa-3x"></i></button>
-        <button class="lightbox__prev"><i class="fa-solid fa-chevron-left fa-3x"></i></button>
-        <div class="lightbox__container">
-            <!-- <img src="https://picsum.photos/900/1800" alt="">
-            <p class="media-title"></p> -->
-        </div>
-        <button class="lightbox__next"><i class="fa-solid fa-chevron-right fa-3x"></i></button>
+        <button class="lightbox__close" aria-label="Image closeup view"><i class="fa-solid fa-xmark fa-3x"></i></button>
+        <button class="lightbox__prev" aria-label="Previous image"><i class="fa-solid fa-chevron-left fa-3x"></i></button>
+        <div class="lightbox__container"></div>
+        <button class="lightbox__next" aria-label="Next image"><i class="fa-solid fa-chevron-right fa-3x"></i></button>
     </div>
 
     <!-- Factories -->

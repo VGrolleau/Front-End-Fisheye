@@ -137,11 +137,6 @@ function sidebarPriceLikes() {
     priceLikesSidebar.appendChild(priceDiv);
 }
 
-function getAriaModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.setAttribute("aria-labelledby", "Contact me " + namePhotographer);
-}
-
 function getNameModal() {
     const modalNamePhotographer = document.querySelector(".modal-name-photographer");
     modalNamePhotographer.innerText = namePhotographer;
@@ -158,7 +153,6 @@ async function init() {
     displayData(photographers, media);
     selectCustomize();
     sidebarPriceLikes();
-    getAriaModal();
     getNameModal();
 }
 

@@ -27,7 +27,7 @@ class Photo {
 
         aImg.appendChild(img);
 
-        const titleLikesDiv = document.createElement('div');
+        const titleLikesDiv = document.createElement('aside');
         titleLikesDiv.classList.add('title-likes-div');
         titleLikesDiv.setAttribute("aria-label", "Likes and title bloc");
 
