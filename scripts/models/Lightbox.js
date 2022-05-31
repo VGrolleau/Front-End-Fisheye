@@ -1,6 +1,6 @@
 class Lightbox {
     static open = false;
-    static indexMedia = null
+    static indexMedia = null;
 
     constructor(mediasPhotographer, namePhotographer) {
         this.lightbox = document.querySelector('.lightbox');

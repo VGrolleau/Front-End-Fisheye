@@ -11,6 +11,7 @@ let namePhotographer = "";
 let arrayPhotographers = [];
 let mediasPhotographer = [];
 let likesNumber = 0;
+// let isDisplayed = false;
 
 async function getPhotographers() {
     let rep = await fetch('data/photographers.json', { method: 'GET' });
@@ -19,7 +20,7 @@ async function getPhotographers() {
 }
 
 function displayData(photographers, medias) {
-    console.log(medias);
+    // console.log(medias);
     arrayPhotographers = photographers;
 
     photographers.forEach(photographer => {
@@ -83,60 +84,44 @@ function selectCustomize() {
 }
 
 function orderByPopularity() {
-    photographerInfo.innerHTML = "";
-    photographerImg.innerHTML = "";
     photographersSection.innerHTML = "";
 
-    console.log("order by popularity");
     mediasPhotographer.sort(function(a, b) {
         return a.likes - b.likes;
     });
 
-    jsonObject = mediasPhotographer.map(JSON.stringify);
-    uniqueSet = new Set(jsonObject);
-    filteredPopularityMedias = Array.from(uniqueSet).map(JSON.parse);
-
-    displayData(arrayPhotographers, filteredPopularityMedias);
-
-    console.log(mediasPhotographer, filteredPopularityMedias);
+    displayOrdered();
 }
 
 function orderByDate() {
-    photographerInfo.innerHTML = "";
-    photographerImg.innerHTML = "";
     photographersSection.innerHTML = "";
 
-    console.log("order by date");
     mediasPhotographer.sort(function(a, b) {
         return new Date(a.date) - new Date(b.date);
     });
 
-    jsonObject = mediasPhotographer.map(JSON.stringify);
-    uniqueSet = new Set(jsonObject);
-    filteredDateMedias = Array.from(uniqueSet).map(JSON.parse);
-
-    displayData(arrayPhotographers, filteredDateMedias);
-
-    console.log(mediasPhotographer, filteredDateMedias);
+    displayOrdered();
 }
 
 function orderByTitle() {
-    photographerInfo.innerHTML = "";
-    photographerImg.innerHTML = "";
     photographersSection.innerHTML = "";
 
-    console.log("order by title");
     mediasPhotographer.sort(function(a, b) {
         return a.title.localeCompare(b.title);
     });
 
-    jsonObject = mediasPhotographer.map(JSON.stringify);
-    uniqueSet = new Set(jsonObject);
-    filteredTitleMedias = Array.from(uniqueSet).map(JSON.parse);
+    displayOrdered();
+}
 
-    displayData(arrayPhotographers, filteredTitleMedias);
+function displayOrdered() {
+    mediasPhotographer.forEach(mediaModel => {
+        photographersSection.appendChild(mediaModel.getMediaCardDOM());
+    })
 
-    console.log(mediasPhotographer, filteredTitleMedias);
+    const aImg = document.querySelectorAll(".a-img");
+    aImg.forEach(a => a.addEventListener("click", (event) => {
+        event.preventDefault();
+    }))
 }
 
 function sidebarPriceLikes() {
