@@ -27,9 +27,10 @@ class Photo {
 
         aImg.appendChild(img);
 
-        const titleLikesDiv = document.createElement('aside');
+        const titleLikesDiv = document.createElement('div');
         titleLikesDiv.classList.add('title-likes-div');
-        titleLikesDiv.setAttribute("aria-label", "Likes and title bloc");
+        // titleLikesDiv.setAttribute("aria-label", "Likes and title bloc");
+        // titleLikesDiv.setAttribute("role", "note");
 
         const pTitle = document.createElement('p');
         pTitle.textContent = this.title;
@@ -37,7 +38,8 @@ class Photo {
         const likesCount = document.createElement('p');
         likesCount.classList.add("like-count");
         likesCount.innerHTML += `<span>${this.likes}</span> <i class="fa-solid fa-heart"></i>`;
-        likesCount.setAttribute("aria-label", "Likes");
+        // likesCount.setAttribute("aria-label", "Likes");
+        // likesCount.setAttribute("role", "paragraph");
         likesCount.addEventListener("click", () => { this.updateLikes() });
 
         titleLikesDiv.appendChild(pTitle);
