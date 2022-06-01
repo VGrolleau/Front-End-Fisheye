@@ -8,10 +8,13 @@
         margin: initial;
         left: auto;
         right: 20px;
-        top: 20px;
     }
     .photographer_img {
         margin: 0 20px;
+    }
+    .custom-select ul {
+        width: 190px;
+        height: 190px;
     }
     .photographer_content,
     .price-likes-sidebar {
