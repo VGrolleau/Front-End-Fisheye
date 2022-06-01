@@ -1,0 +1,11 @@
+@media only screen and (min-width: 320px) {
+    .modal {
+        width: 80%;
+    }
+    form label {
+        margin: 10px 0;
+    }
+    .modal .contact_button {
+        margin: auto;
+    }
+}
