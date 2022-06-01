@@ -65,7 +65,7 @@
 
 .custom-select ul {
     margin-top: 10px;
-    padding: 10px 20px;
+    padding: 10px;
     position: absolute;
     display: flex;
     justify-content: space-around;
@@ -90,13 +90,20 @@
     justify-content: left;
     align-items: center;
     cursor: pointer;
+    border-bottom: white solid 1px;
+    text-indent: 10px;
 }
 
-.border {
+.custom-select li:last-child {
+    border-bottom: none;
+}
+
+
+/* .border {
     width: 110%;
     height: 1px;
     background-color: white;
-}
+} */
 
 .custom-select button {
     background-color: #901C1C;

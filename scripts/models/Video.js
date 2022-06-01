@@ -28,7 +28,7 @@ class Video {
 
         const titleLikesDiv = document.createElement('div');
         titleLikesDiv.classList.add('title-likes-div');
-        titleLikesDiv.setAttribute("aria-label", "Likes and title bloc");
+        // titleLikesDiv.setAttribute("aria-label", "Likes and title bloc");
 
         const pTitle = document.createElement('p');
         pTitle.textContent = this.title;
@@ -36,7 +36,7 @@ class Video {
         const likesCount = document.createElement('p');
         likesCount.classList.add("like-count");
         likesCount.innerHTML += `<span>${this.likes}</span> <i class="fa-solid fa-heart"></i>`;
-        likesCount.setAttribute("aria-label", "Likes");
+        // likesCount.setAttribute("aria-label", "Likes");
         likesCount.addEventListener("click", () => { this.updateLikes() });
 
         titleLikesDiv.appendChild(pTitle);

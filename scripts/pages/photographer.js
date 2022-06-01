@@ -137,11 +137,6 @@ function sidebarPriceLikes() {
     priceLikesSidebar.appendChild(priceDiv);
 }
 
-function getAriaModal() {
-    const modal = document.getElementById("contact_modal");
-    modal.setAttribute("aria-labelledby", "Contact me " + namePhotographer);
-}
-
 function getNameModal() {
     const modalNamePhotographer = document.querySelector(".modal-name-photographer");
     modalNamePhotographer.innerText = namePhotographer;
@@ -150,6 +145,9 @@ function getNameModal() {
 function displayLightbox(media) {
     const lightboxModel = new Lightbox(mediasPhotographer, namePhotographer);
     lightboxModel.getLightbox(media);
+
+    const lightbox = document.querySelector(".lightbox");
+    lightbox.setAttribute("aria-label", "Lightbox");
 }
 
 async function init() {
@@ -158,7 +156,6 @@ async function init() {
     displayData(photographers, media);
     selectCustomize();
     sidebarPriceLikes();
-    getAriaModal();
     getNameModal();
 }
 
