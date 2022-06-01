@@ -1,0 +1,25 @@
+@media only screen and (min-width: 320px) {
+    .photograph-header {
+        flex-direction: row-reverse;
+        justify-content: left;
+        padding: 0;
+    }
+    .contact_button {
+        margin: initial;
+        left: auto;
+        right: 20px;
+        top: 20px;
+    }
+    .photographer_img {
+        margin: 0 20px;
+    }
+    .photographer_content,
+    .price-likes-sidebar {
+        font-size: 1.2em;
+    }
+    .card-media img,
+    .card-media video {
+        width: 450px;
+        height: 400px;
+    }
+}
