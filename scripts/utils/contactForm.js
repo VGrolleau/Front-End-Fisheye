@@ -70,6 +70,8 @@ function displayModal() {
     modal.removeAttribute("aria-hidden");
     modal.setAttribute("aria-modal", "true");
     activModal = modal;
+
+    getAriaLabelModal();
 }
 
 function closeModal() {
@@ -118,3 +120,10 @@ window.addEventListener("keydown", function(event) {
         focusInModal(event);
     }
 })
+
+function getAriaLabelModal() {
+    const contactModal = document.getElementById("contact_modal");
+    const contentTitleModal = document.querySelector(".modal h2").textContent;
+    console.log(contentTitleModal);
+    contactModal.setAttribute("aria-label", contentTitleModal);
+}

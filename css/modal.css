@@ -36,18 +36,19 @@
     border: none;
 }
 
-.modal header {
+.modal .header {
+    display: flex;
     justify-content: space-between;
     width: 100%;
     height: auto;
     align-items: baseline;
 }
 
-.modal header img {
+.modal .header img {
     cursor: pointer;
 }
 
-.modal header h2 {
+.modal .header h2 {
     font-size: 3.5em;
     font-weight: normal;
     margin: 0 0 20px;
