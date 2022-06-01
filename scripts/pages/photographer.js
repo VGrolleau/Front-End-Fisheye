@@ -145,6 +145,9 @@ function getNameModal() {
 function displayLightbox(media) {
     const lightboxModel = new Lightbox(mediasPhotographer, namePhotographer);
     lightboxModel.getLightbox(media);
+
+    const lightbox = document.querySelector(".lightbox");
+    lightbox.setAttribute("aria-label", "Lightbox");
 }
 
 async function init() {
