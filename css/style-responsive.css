@@ -1,23 +1,45 @@
 @import url("photographer-responsive.css");
-@media only screen and (min-width: 320px) {
-    header {
-        padding-top: 20px;
-    }
-    .photographer_section {
-        grid-template-columns: 1fr;
-    }
-    .img_h2_div img {
-        height: 300px;
-        width: 300px;
-    }
-    .img_h2_div h2 {
-        font-size: 3em;
-    }
-    .location_p {
-        font-size: 1.8em;
-    }
-    .tagline_p,
-    .price_p {
-        font-size: 1.2em;
-    }
+
+/* @media screen and (min-width: 320px) { */
+
+
+/* @media screen and (min-width: 320px) and (max-width: 767px) { */
+
+
+/* @media only screen and (320px <=width <=8000px) { */
+
+header {
+    padding-top: 20px;
 }
+
+.photographer_section {
+    grid-template-columns: 1fr;
+}
+
+.img_h2_div img {
+    height: 300px;
+    width: 300px;
+}
+
+.img_h2_div h2 {
+    font-size: 3em;
+}
+
+.location_p {
+    font-size: 1.8em;
+}
+
+.tagline_p,
+.price_p {
+    font-size: 1.2em;
+}
+
+
+/* } */
+
+
+/* @media only screen and (min-width: 768px) {
+    body {
+        background-color: lightblue;
+    }
+} */
