@@ -51,3 +51,30 @@
         padding: 15px 20px;
     }
 }
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    * {
+        font-size: 14px;
+    }
+    .modal {
+        width: 50%;
+    }
+    .modal .header img {
+        width: 30px;
+    }
+    form label {
+        margin: 10px 0;
+    }
+    form input {
+        height: 40px;
+    }
+    form input,
+    textarea {
+        font-size: 1.2rem;
+    }
+    .modal .contact_button {
+        margin: auto;
+        font-size: 1.2rem;
+        padding: 15px 20px;
+    }
+}

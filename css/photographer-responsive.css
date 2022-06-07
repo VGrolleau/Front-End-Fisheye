@@ -67,9 +67,17 @@
         font-size: 14px;
     }
     .photograph-header {
-        flex-direction: row-reverse;
         margin: 0 20px;
         padding: 20px;
+    }
+    .photographer_order {
+        margin: auto 20px;
+    }
+}
+
+@media only screen and (min-width: 425px) and (max-width: 1439px) {
+    .photograph-header {
+        flex-direction: row-reverse;
         height: auto;
     }
     .contact_button {
@@ -82,5 +90,15 @@
     }
     .photographer-info h1 {
         font-size: 2rem;
+    }
+    .custom-select ul {
+        width: 190px;
+        height: 190px;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    .photograph-header {
+        padding: 50px;
     }
 }
