@@ -1,3 +1,7 @@
+* {
+    font-size: 16px;
+}
+
 #contact_modal {
     position: fixed;
     display: none;
@@ -49,9 +53,13 @@
 }
 
 .modal .header h2 {
-    font-size: 3.5em;
     font-weight: normal;
     margin: 0 0 20px;
+}
+
+.modal .header h2,
+.modal-name-photographer {
+    font-size: 3rem;
 }
 
 form {
@@ -63,7 +71,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 2em;
+    font-size: 2rem;
 }
 
 form div {
