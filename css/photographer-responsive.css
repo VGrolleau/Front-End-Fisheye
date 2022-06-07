@@ -61,3 +61,26 @@
         border-radius: 5px 0 0 5px;
     }
 }
+
+@media only screen and (min-width: 425px) and (max-width: 1023px) {
+    * {
+        font-size: 14px;
+    }
+    .photograph-header {
+        flex-direction: row-reverse;
+        margin: 0 20px;
+        padding: 20px;
+        height: auto;
+    }
+    .contact_button {
+        margin: 0;
+        position: initial;
+        font-size: 1rem;
+        width: auto;
+        height: auto;
+        padding: 20px 10px;
+    }
+    .photographer-info h1 {
+        font-size: 2rem;
+    }
+}
