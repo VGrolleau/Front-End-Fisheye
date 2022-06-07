@@ -15,13 +15,13 @@
 
 .photographer-info h1 {
     color: #D3573C;
-    font-size: 3.5em;
+    font-size: 3.5rem;
     font-weight: normal;
     margin: 0;
 }
 
 .contact_button {
-    font-size: 20px;
+    font-size: 1.25rem;
     font-weight: bold;
     color: white;
     padding: 11px;
@@ -111,7 +111,7 @@
     text-decoration: none;
     border: none;
     color: white;
-    font-size: 18px;
+    font-size: 1.125rem;
     cursor: pointer;
     width: 210px;
     padding: 10px;
@@ -166,7 +166,7 @@
 
 .card-media h2 {
     color: #D3573C;
-    font-size: 36px;
+    font-size: 2.25rem;
     margin-bottom: 0;
 }
 
@@ -174,7 +174,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    font-size: 1.3em;
+    font-size: 1.3rem;
     color: #901C1C;
 }
 
