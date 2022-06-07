@@ -1,11 +1,80 @@
-@media only screen and (min-width: 320px) {
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    * {
+        font-size: 12px;
+    }
     .modal {
-        width: 80%;
+        width: 100%;
+        padding: 30px 20px;
+    }
+    .modal .header img {
+        width: 30px;
     }
     form label {
         margin: 10px 0;
     }
+    form input {
+        height: 30px;
+    }
+    form input,
+    textarea {
+        font-size: 1.2rem;
+    }
     .modal .contact_button {
         margin: auto;
+        font-size: 1.2rem;
+    }
+}
+
+@media only screen and (min-width: 425px) and (max-width: 1023px) {
+    * {
+        font-size: 14px;
+    }
+    .modal {
+        width: 80%;
+    }
+    .modal .header img {
+        width: 30px;
+    }
+    form label {
+        margin: 10px 0;
+    }
+    form input {
+        height: 40px;
+    }
+    form input,
+    textarea {
+        font-size: 1.2rem;
+    }
+    .modal .contact_button {
+        margin: auto;
+        font-size: 1.2rem;
+        padding: 15px 20px;
+    }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    * {
+        font-size: 14px;
+    }
+    .modal {
+        width: 50%;
+    }
+    .modal .header img {
+        width: 30px;
+    }
+    form label {
+        margin: 10px 0;
+    }
+    form input {
+        height: 40px;
+    }
+    form input,
+    textarea {
+        font-size: 1.2rem;
+    }
+    .modal .contact_button {
+        margin: auto;
+        font-size: 1.2rem;
+        padding: 15px 20px;
     }
 }

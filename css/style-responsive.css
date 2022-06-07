@@ -1,23 +1,80 @@
 @import url("photographer-responsive.css");
-@media only screen and (min-width: 320px) {
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+    * {
+        font-size: 12px;
+    }
+    header {
+        padding-top: 20px;
+        flex-wrap: wrap;
+        height: initial;
+        justify-content: center;
+        text-align: center;
+    }
+    header a {
+        width: 100%;
+    }
+    .logo {
+        margin-left: initial;
+        height: 3em;
+    }
+    h1 {
+        margin-right: 0;
+        width: 100%;
+    }
+    .photographer_section {
+        grid-template-columns: 1fr;
+        margin-top: 50px;
+    }
+    .img_h2_div img {
+        height: 150px;
+        width: 150px;
+    }
+}
+
+
+/* @media only screen and (min-width: 320px) and (max-width: 767px) {
+    header {
+        padding: 20px 20px 0;
+        flex-wrap: wrap;
+        height: initial;
+        justify-content: space-between;
+        text-align: center;
+    }
+    .logo {
+        margin-left: initial;
+        height: 3em;
+    }
+    h1 {
+        margin-right: 0;
+    }
+    .photographer_section {
+        grid-template-columns: 1fr;
+        margin-top: 50px;
+    }
+} */
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+    * {
+        font-size: 14px;
+    }
     header {
         padding-top: 20px;
     }
     .photographer_section {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+        margin: 50px 20px 0;
     }
-    .img_h2_div img {
-        height: 300px;
-        width: 300px;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1439px) {
+    * {
+        font-size: 16px;
     }
-    .img_h2_div h2 {
-        font-size: 3em;
+    header {
+        padding-top: 20px;
     }
-    .location_p {
-        font-size: 1.8em;
-    }
-    .tagline_p,
-    .price_p {
-        font-size: 1.2em;
+    .photographer_section {
+        grid-template-columns: 1fr 1fr;
+        margin: 50px 20px 0;
     }
 }
