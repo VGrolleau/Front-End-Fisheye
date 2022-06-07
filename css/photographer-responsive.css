@@ -13,7 +13,7 @@
         font-size: 1rem;
         width: auto;
         height: auto;
-        padding: 20px 15px;
+        padding: 15px 10px;
     }
     .photographer-info h1 {
         font-size: 2rem;
@@ -30,19 +30,35 @@
     .photographer_order {
         margin: auto 20px;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
     }
-    /* .custom-select ul {
+    .custom-select ul {
         width: 190px;
         height: 190px;
-    } */
-    /* .photographer_content,
-    .price-likes-sidebar {
-        font-size: 1.2em;
-    } */
-    /* .card-media img,
+    }
+    .photographer_content>.photographer_section {
+        margin: 50px 40px;
+    }
+    .photographer_content>.photographer_section article {
+        width: 100%;
+        justify-self: start;
+    }
+    .a-img {
+        width: 100%;
+    }
+    .card-media img,
     .card-media video {
-        width: 450px;
-        height: 400px;
-    } */
+        width: 100%;
+    }
+    .price-likes-sidebar {
+        bottom: 1%;
+        right: 0;
+        flex-direction: column;
+        width: fit-content;
+        padding: 10px 5px 10px 10px;
+        justify-content: center;
+        height: fit-content;
+        border-radius: 5px 0 0 5px;
+        z-index: 5;
+    }
 }
