@@ -34,10 +34,11 @@
         <div class="photographer_content">
             <div class="photographer_order">
                 <label for="order_by">Trier par</label>
-                <div class="custom-select">
+                <div class="custom-select" id="order_by">
                     <button class="order-by-btn">
                         <span>Choisissez un tri :</span>
-                        <i class="fa-solid fa-angle-down select-arrow"></i>
+                        <span class="fa-solid fa-angle-down select-arrow"></span>
+                        <!-- <i class="fa-solid fa-angle-down select-arrow"></i> -->
                     </button>
                     <ul>
                         <li class="order-by-li">Popularité</li>
@@ -87,10 +88,10 @@
     </div>
 
     <div class="lightbox" aria-hidden="true" role="dialog">
-        <button class="lightbox__close" aria-label="Image closeup view"><i class="fa-solid fa-xmark fa-3x"></i></button>
-        <button class="lightbox__prev" aria-label="Previous image"><i class="fa-solid fa-chevron-left fa-3x"></i></button>
+        <button class="lightbox__close" aria-label="Image closeup view"><span class="fa-solid fa-xmark fa-3x"></span></button>
+        <button class="lightbox__prev" aria-label="Previous image"><span class="fa-solid fa-chevron-left fa-3x"></span></button>
         <div class="lightbox__container"></div>
-        <button class="lightbox__next" aria-label="Next image"><i class="fa-solid fa-chevron-right fa-3x"></i></button>
+        <button class="lightbox__next" aria-label="Next image"><span class="fa-solid fa-chevron-right fa-3x"></span></button>
     </div>
 
     <!-- Factories -->
