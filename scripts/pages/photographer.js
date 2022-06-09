@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 const photographerInfo = document.querySelector(".photographer-info");
 const photographerImg = document.querySelector(".photographer_img");
 const photographersSection = document.querySelector(".photographer_section");
@@ -8,10 +7,8 @@ let mediaModel;
 let pricePhotographer = 0;
 let idPhotographer = 0;
 let namePhotographer = "";
-let arrayPhotographers = [];
 let mediasPhotographer = [];
 let likesNumber = 0;
-// let isDisplayed = false;
 
 async function getPhotographers() {
     let rep = await fetch('data/photographers.json', { method: 'GET' });
@@ -20,9 +17,6 @@ async function getPhotographers() {
 }
 
 function displayData(photographers, medias) {
-    // console.log(medias);
-    arrayPhotographers = photographers;
-
     photographers.forEach(photographer => {
         if (urlId === photographer.id) {
             photographerModel = new PhotographerFactory(photographer);
@@ -40,7 +34,6 @@ function displayData(photographers, medias) {
             mediaModel = new MediaFactory(media, namePhotographer);
             photographersSection.appendChild(mediaModel.getMediaCardDOM());
             mediasPhotographer.push(mediaModel);
-            currentMediaModel = mediaModel;
             likesNumber += media.likes;
         }
     });
@@ -65,8 +58,6 @@ function selectCustomize() {
     const orderByBtn = document.querySelector(".order-by-btn span");
     const ordersByLi = document.querySelectorAll(".order-by-li");
 
-    // console.log(mediasPhotographer);
-
     ordersByLi.forEach((orderByLi) =>
         orderByLi.addEventListener('click', () => {
             orderByBtn.textContent = orderByLi.textContent;
@@ -83,6 +74,7 @@ function selectCustomize() {
     );
 }
 
+// Tri par popularité
 function orderByPopularity() {
     photographersSection.innerHTML = "";
 
@@ -93,6 +85,7 @@ function orderByPopularity() {
     displayOrdered();
 }
 
+// Tri par date
 function orderByDate() {
     photographersSection.innerHTML = "";
 
@@ -103,6 +96,7 @@ function orderByDate() {
     displayOrdered();
 }
 
+// Tri par titre
 function orderByTitle() {
     photographersSection.innerHTML = "";
 
@@ -113,6 +107,7 @@ function orderByTitle() {
     displayOrdered();
 }
 
+// Affichage selon le tri
 function displayOrdered() {
     mediasPhotographer.forEach(mediaModel => {
         photographersSection.appendChild(mediaModel.getMediaCardDOM());
@@ -124,6 +119,7 @@ function displayOrdered() {
     }))
 }
 
+// Affichage de la barre avec le prix et le total des likes
 function sidebarPriceLikes() {
     const priceLikesSidebar = document.querySelector(".price-likes-sidebar");
 
@@ -137,11 +133,13 @@ function sidebarPriceLikes() {
     priceLikesSidebar.appendChild(priceDiv);
 }
 
+// Obtention du nom du photographe dans la modale
 function getNameModal() {
     const modalNamePhotographer = document.querySelector(".modal-name-photographer");
     modalNamePhotographer.innerText = namePhotographer;
 }
 
+// Affichage de la lightbox
 function displayLightbox(media) {
     const lightboxModel = new Lightbox(mediasPhotographer, namePhotographer);
     lightboxModel.getLightbox(media);

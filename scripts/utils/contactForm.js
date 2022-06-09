@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const modal = document.getElementById("contact_modal");
 let activModal = null;
 const focusableSelector = 'input, textarea, button';

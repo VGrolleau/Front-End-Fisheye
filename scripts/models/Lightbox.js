@@ -42,7 +42,6 @@ class Lightbox {
         this.lightbox.setAttribute("aria-modal", "true");
         document.body.style.overflow = "hidden";
 
-        // Mettre à jour this.index avec index du media dans le tableau mediasPhotographer
         for (let i = 0; i < this.medias.length; i++) {
             if (this.medias[i] === media) {
                 Lightbox.indexMedia = i;
