@@ -91,7 +91,9 @@ function closeModal() {
 
 function focusInModal(event) {
     event.preventDefault();
+    console.log(document.activeElement);
     let index = focusables.findIndex(element => element === activModal.querySelector(':focus'));
+    console.log(index);
 
     if (event.shiftKey === true) {
         index--;
@@ -123,6 +125,5 @@ window.addEventListener("keydown", function(event) {
 function getAriaLabelModal() {
     const contactModal = document.getElementById("contact_modal");
     const contentTitleModal = document.querySelector(".modal h2").textContent;
-    console.log(contentTitleModal);
     contactModal.setAttribute("aria-label", contentTitleModal);
 }

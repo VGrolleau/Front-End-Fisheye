@@ -21,6 +21,12 @@ class PhotographerFactory {
         divImgH2.addEventListener("click", () => {
             window.location = `photographer.html?id=${this.id}`;
         });
+        divImgH2.setAttribute("tabindex", 0);
+        divImgH2.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                window.location = `photographer.html?id=${this.id}`;
+            }
+        });
 
         const img = document.createElement('img');
         img.setAttribute("src", this.picture);
