@@ -13,6 +13,12 @@ class PhotographerFactory {
     getUserCardDOM() {
         const article = document.createElement('article');
         article.id = this.id;
+        article.setAttribute("tabindex", 0);
+        article.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                window.location = `photographer.html?id=${this.id}`;
+            }
+        });
 
         const divImgH2 = document.createElement('div');
         divImgH2.classList.add('img_h2_div');
@@ -20,12 +26,6 @@ class PhotographerFactory {
         divImgH2.setAttribute("aria-label", `${this.name} profile`);
         divImgH2.addEventListener("click", () => {
             window.location = `photographer.html?id=${this.id}`;
-        });
-        divImgH2.setAttribute("tabindex", 0);
-        divImgH2.addEventListener("keydown", (event) => {
-            if (event.key === "Enter") {
-                window.location = `photographer.html?id=${this.id}`;
-            }
         });
 
         const img = document.createElement('img');
